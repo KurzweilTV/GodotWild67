@@ -1,9 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://vlkg0et0ecx8"]
+[gd_scene load_steps=3 format=3 uid="uid://vlkg0et0ecx8"]
 
 [ext_resource type="Texture2D" uid="uid://b0qitn2drd2h6" path="res://art/background/BottleProto.png" id="1_bfcjq"]
+[ext_resource type="PackedScene" uid="uid://c47c6b351f186" path="res://scenes/capsule.tscn" id="2_0fuqp"]
 
 [node name="Proto" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
 texture = ExtResource("1_bfcjq")
 centered = false
+
+[node name="Capsule" parent="." instance=ExtResource("2_0fuqp")]
+position = Vector2(264, 137)
