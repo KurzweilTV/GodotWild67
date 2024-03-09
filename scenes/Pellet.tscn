@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cj5bif0iivb4"]
+
+[sub_resource type="GDScript" id="GDScript_hy4px"]
+script/source = "extends Capsule
+
+
+"
+
+[node name="Pellet" type="Sprite2D"]
+script = SubResource("GDScript_hy4px")

@@ -5,6 +5,7 @@ const RIGHT_EDGE : int = 7
 const LEFT_EDGE : int = 0
 const FLOOR : int = 15
 
+var is_active_piece : bool = true
 var max_left : int = 0
 var max_right : int = 6
 var max_down : int = 15
@@ -16,12 +17,15 @@ var current_grid : Vector2 = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	position = Vector2(264,137)
 	update_tick_speed()
 	self.frame = choose_random_piece()
 
 func _input(event: InputEvent) -> void:  # player input events
-	var movement_options = check_on_grid(position)
+	if not is_active_piece:
+		return
 
+	var movement_options = check_on_grid(position)
 	if event.is_action_pressed("left") and movement_options["left"]:
 		move_left()
 	if event.is_action_pressed("right") and movement_options["right"]:
@@ -97,12 +101,16 @@ func check_on_grid(pos) -> Dictionary:
 		can_move_right = false
 	if location.y >= max_down:
 		can_move_down = false
+		lock_piece()
 
 	return {
 		"left": can_move_left,
 		"right": can_move_right,
 		"down": can_move_down
 	}
+
+func lock_piece() -> void:
+	is_active_piece = false
 
 # signal functions
 func _on_ticker_timeout() -> void:

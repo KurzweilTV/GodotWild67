@@ -8,7 +8,6 @@ texture_filter = 1
 texture = ExtResource("1_ko4cb")
 offset = Vector2(8, 2.08165e-12)
 hframes = 6
-frame = 3
 script = ExtResource("1_ehhrs")
 
 [node name="Ticker" type="Timer" parent="."]

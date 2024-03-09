@@ -25,3 +25,10 @@ func grid_to_position(grid_pos):
 	var pixel_x = grid_pos.x * 16 + origin.x
 	var pixel_y = grid_pos.y * 16 + origin.y
 	return Vector2(pixel_x, pixel_y)
+
+func set_cell_occupied(grid_pos, occupied: bool):
+	if grid_pos.x >= 0 and grid_pos.x < grid_width and grid_pos.y >= 0 and grid_pos.y < grid_height:
+		Grid[grid_pos.y][grid_pos.x] = occupied if true else null
+
+func check_for_line_clears() -> void:
+	print("Checked for Line Clears")
