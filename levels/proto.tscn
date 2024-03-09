@@ -11,4 +11,7 @@ texture = ExtResource("1_bfcjq")
 centered = false
 
 [node name="Capsule" parent="." instance=ExtResource("2_0fuqp")]
-position = Vector2(264, 137)
+position = Vector2(263, 137)
+
+[node name="GridOrigin" type="Marker2D" parent="."]
+position = Vector2(256, 129)
