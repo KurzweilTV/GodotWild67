@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c47c6b351f186"]
+
+[ext_resource type="Texture2D" uid="uid://bqfs7txi8mrb8" path="res://art/capsules/Capsule.png" id="1_ko4cb"]
+
+[node name="Capsule" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ko4cb")
+hframes = 6
+frame = 5
