@@ -11,7 +11,7 @@ func _initialize_grid():
 	for y in range(grid_size.y):
 		grid.append([])
 		for x in range(grid_size.x):
-			grid[y].append(false)  # Set all cells to unoccupied
+			grid[y].append(null)  # Set all cells to unoccupied
 
 func position_to_grid(pos):
 	var grid_x = int(pos.x / 16)
@@ -24,15 +24,16 @@ func grid_to_position(grid_pos):
 	return Vector2(pixel_x, pixel_y)
 
 func is_cell_occupied(grid_pos: Vector2) -> bool:
-  # Check if coordinates are within grid bounds
 	if grid_pos.x < 0 or grid_pos.x >= grid_size.x or grid_pos.y < 0 or grid_pos.y >= grid_size.y:
-		return true
+		return false
 
-	return grid[int(grid_pos.y)][int(grid_pos.x)]
+	return grid[int(grid_pos.y)][int(grid_pos.x)] != null
 
-func set_cell_occupied(grid_pos, occupied: bool):
+
+func set_cell_occupied(grid_pos, occupant):
 	if grid_pos.x >= 0 and grid_pos.x < grid_size.x and grid_pos.y >= 0 and grid_pos.y < grid_size.y:
-		grid[grid_pos.y][grid_pos.x] = occupied
+		grid[grid_pos.y][grid_pos.x] = occupant
+
 
 func check_for_line_clears():
 	print("Checked for Line Clears")

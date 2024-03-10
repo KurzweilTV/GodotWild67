@@ -31,5 +31,6 @@ script = ExtResource("1_l6lsl")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_0rice")
-frame_progress = 0.445413
+autoplay = "default"
+frame_progress = 0.117288
 centered = false
