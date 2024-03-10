@@ -7,12 +7,14 @@ const FLOOR : int = 16
 
 var gameboard
 var pair_capsule
+var will_rotate : bool = false
 var is_active_piece : bool = true
 var delay : bool = false
 var piece_color : String
 var max_left : int = 0
 var max_right : int = 7
-var max_down : int = 15
+var max_down : int = 16
+var current_cycle : int = 0
 
 @onready var ticker: Timer = $Ticker
 
@@ -40,7 +42,7 @@ func _process(_delta: float) -> void:
 # move and rotate functions
 func move_left() -> void:
 	if delay:
-		await get_tree().create_timer(0.02).timeout # Delay for a fraction of a second
+		await get_tree().create_timer(0.01).timeout # Shitty Hack
 	var new_position = position + Vector2(-16, 0)
 	var grid_pos = Grid.position_to_grid(new_position)
 	if not Grid.is_cell_occupied(grid_pos) and pair_capsule != null and Grid.position_to_grid(pair_capsule.position) != grid_pos:
@@ -58,14 +60,31 @@ func move_down() -> void:
 
 	var new_position = position + Vector2(0, 16)
 	var grid_pos = Grid.position_to_grid(new_position)
-	if not Grid.is_cell_occupied(grid_pos) and pair_capsule != null and Grid.position_to_grid(pair_capsule.position) != grid_pos:
-		position.y += 16
+
+	# Check if the next position is the floor or an already solidified piece
+	if grid_pos.y >= max_down or Grid.is_cell_occupied(grid_pos):
+		lock_piece()
 	else:
-		lock_piece()  # Lock if collision occurs
+		# If there's no collision, move the capsule down
+		position.y += 16
+		ticker.wait_time = 1 # reset ticker to avoid double moves
+		ticker.start()
 
 
 func rotate_ccw() -> void:
-	pass
+	var rotations : Dictionary = {
+		1: Vector2(-16, -16),  # Move left and up
+		2: Vector2(-16, 16),   # Move left and down
+		3: Vector2(16, 16),    # Move right and down
+		4: Vector2(16, -16),   # Move right and up
+	}
+
+	if will_rotate:
+		current_cycle += 1
+		if current_cycle > 4:
+			current_cycle = 1
+		position += rotations[current_cycle]
+		print("Current cycle: ", current_cycle)
 
 # setup functions
 func randomize_piece() -> void:
@@ -97,6 +116,9 @@ func update_tick_speed() -> void: # faster drops based on game_level
 func register_with_gameboard() -> void:
 	gameboard.add_piece()
 
+func deregister_with_gameboard() -> void:
+	gameboard.remove_piece()
+
 # checks
 func check_wall_collision() -> void:
 	if position.x - 16 < LEFT_EDGE:
@@ -109,7 +131,16 @@ func check_floor_collision() -> void:
 func lock_piece() -> void:
 	Grid.set_cell_occupied(Grid.position_to_grid(position), self)
 	is_active_piece = false
-	gameboard.remove_piece()
+	if pair_capsule != null and pair_capsule.is_active_piece:
+		pair_capsule.lock_piece_without_propagation()  # Lock the pair without propagating back
+	deregister_with_gameboard()
+
+func lock_piece_without_propagation() -> void:
+	# Similar to lock_piece but without calling lock_piece on the paired capsule again
+	Grid.set_cell_occupied(Grid.position_to_grid(position), self)
+	is_active_piece = false
+	deregister_with_gameboard()
+
 
 # signal functions
 func _on_ticker_timeout() -> void:

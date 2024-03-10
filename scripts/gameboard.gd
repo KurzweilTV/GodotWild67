@@ -21,6 +21,7 @@ func spawn_piece() -> void:
 
 	capsule1.set_pair_capsule(capsule2)
 	capsule2.delay = true
+	capsule2.will_rotate = true
 
 	add_child(capsule1)
 	add_child(capsule2)

@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://c47c6b351f186"]
 
 [ext_resource type="Script" path="res://scripts/capsule.gd" id="1_ehhrs"]
-[ext_resource type="Texture2D" uid="uid://cm0cr43rjjcjp" path="res://art/capsules/Pellet.png" id="2_xs15v"]
+[ext_resource type="Texture2D" uid="uid://bqa14da4n663k" path="res://art/capsules/better_pellets.png" id="2_2v12x"]
 
 [node name="Capsule" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_ehhrs")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_xs15v")
+texture = ExtResource("2_2v12x")
 centered = false
 hframes = 3
 

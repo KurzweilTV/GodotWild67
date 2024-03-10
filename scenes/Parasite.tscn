@@ -1,26 +1,33 @@
-[gd_scene load_steps=6 format=3 uid="uid://chbn4qdsreh3b"]
+[gd_scene load_steps=7 format=3 uid="uid://chbn4qdsreh3b"]
 
 [ext_resource type="Script" path="res://scripts/Parasite.gd" id="1_l6lsl"]
-[ext_resource type="Texture2D" uid="uid://c4vb345kf4fme" path="res://art/parasites/proto-blue.png" id="1_y5bsl"]
+[ext_resource type="Texture2D" uid="uid://ch6tlnlvucs52" path="res://art/parasites/parasite_sheet.png" id="2_bb4gt"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_luqga"]
-atlas = ExtResource("1_y5bsl")
+[sub_resource type="AtlasTexture" id="AtlasTexture_3s041"]
+atlas = ExtResource("2_bb4gt")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53lqr"]
+atlas = ExtResource("2_bb4gt")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hrk30"]
-atlas = ExtResource("1_y5bsl")
-region = Rect2(16, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfts3"]
+atlas = ExtResource("2_bb4gt")
+region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0rice"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_luqga")
+"texture": SubResource("AtlasTexture_3s041")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hrk30")
+"texture": SubResource("AtlasTexture_53lqr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfts3")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 2.0
 }]
@@ -31,6 +38,4 @@ script = ExtResource("1_l6lsl")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_0rice")
-autoplay = "default"
-frame_progress = 0.00132301
 centered = false
