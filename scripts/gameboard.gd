@@ -20,6 +20,7 @@ func spawn_piece() -> void:
 	capsule2.position = spawn_point_2
 
 	capsule1.set_pair_capsule(capsule2)
+	capsule2.delay = true
 
 	add_child(capsule1)
 	add_child(capsule2)

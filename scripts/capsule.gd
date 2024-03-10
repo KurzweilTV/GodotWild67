@@ -8,6 +8,7 @@ const FLOOR : int = 16
 var gameboard
 var pair_capsule
 var is_active_piece : bool = true
+var delay : bool = false
 var piece_color : String
 var max_left : int = 0
 var max_right : int = 7
@@ -38,6 +39,8 @@ func _process(_delta: float) -> void:
 
 # move and rotate functions
 func move_left() -> void:
+	if delay:
+		await get_tree().create_timer(0.02).timeout # Delay for a fraction of a second
 	var new_position = position + Vector2(-16, 0)
 	var grid_pos = Grid.position_to_grid(new_position)
 	if not Grid.is_cell_occupied(grid_pos) and pair_capsule != null and Grid.position_to_grid(pair_capsule.position) != grid_pos:
@@ -93,7 +96,6 @@ func update_tick_speed() -> void: # faster drops based on game_level
 
 func register_with_gameboard() -> void:
 	gameboard.add_piece()
-
 
 # checks
 func check_wall_collision() -> void:
