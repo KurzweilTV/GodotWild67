@@ -32,5 +32,5 @@ script = ExtResource("1_l6lsl")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_0rice")
 autoplay = "default"
-frame_progress = 0.117288
+frame_progress = 0.00132301
 centered = false

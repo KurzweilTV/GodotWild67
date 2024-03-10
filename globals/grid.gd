@@ -24,11 +24,11 @@ func grid_to_position(grid_pos):
 	return Vector2(pixel_x, pixel_y)
 
 func is_cell_occupied(grid_pos: Vector2) -> bool:
+	# Check if the position is out of bounds
 	if grid_pos.x < 0 or grid_pos.x >= grid_size.x or grid_pos.y < 0 or grid_pos.y >= grid_size.y:
-		return false
+		return true
 
 	return grid[int(grid_pos.y)][int(grid_pos.x)] != null
-
 
 func set_cell_occupied(grid_pos, occupant):
 	if grid_pos.x >= 0 and grid_pos.x < grid_size.x and grid_pos.y >= 0 and grid_pos.y < grid_size.y:

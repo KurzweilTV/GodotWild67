@@ -6,6 +6,7 @@ const LEFT_EDGE : int = 0
 const FLOOR : int = 16
 
 var gameboard
+var pair_capsule
 var is_active_piece : bool = true
 var piece_color : String
 var max_left : int = 0
@@ -15,11 +16,10 @@ var max_down : int = 15
 @onready var ticker: Timer = $Ticker
 
 func _ready() -> void:
-	var gameboard = get_parent()
+	gameboard = get_parent()
 	update_tick_speed()
 	randomize_piece()
 	register_with_gameboard()
-	print_debug("My color is ", piece_color)
 
 func _input(event: InputEvent) -> void:  # player input events
 	if not is_active_piece:
@@ -38,10 +38,16 @@ func _process(_delta: float) -> void:
 
 # move and rotate functions
 func move_left() -> void:
-	position.x -= 16
+	var new_position = position + Vector2(-16, 0)
+	var grid_pos = Grid.position_to_grid(new_position)
+	if not Grid.is_cell_occupied(grid_pos) and pair_capsule != null and Grid.position_to_grid(pair_capsule.position) != grid_pos:
+		position.x -= 16
 
 func move_right() -> void:
-	position.x += 16
+	var new_position = position + Vector2(16, 0)
+	var grid_pos = Grid.position_to_grid(new_position)
+	if not Grid.is_cell_occupied(grid_pos) and pair_capsule != null and Grid.position_to_grid(pair_capsule.position) != grid_pos:
+		position.x += 16
 
 func move_down() -> void:
 	if not is_active_piece:
@@ -49,10 +55,11 @@ func move_down() -> void:
 
 	var new_position = position + Vector2(0, 16)
 	var grid_pos = Grid.position_to_grid(new_position)
-	if not Grid.is_cell_occupied(grid_pos):
+	if not Grid.is_cell_occupied(grid_pos) and pair_capsule != null and Grid.position_to_grid(pair_capsule.position) != grid_pos:
 		position.y += 16
 	else:
 		lock_piece()  # Lock if collision occurs
+
 
 func rotate_ccw() -> void:
 	pass
@@ -74,6 +81,9 @@ func randomize_piece() -> void:
 			piece_color = "Unknown"
 			printerr("This shouldn't happen. Ever")
 
+func set_pair_capsule(other_capsule: Capsule) -> void:
+	pair_capsule = other_capsule
+	other_capsule.pair_capsule = self
 
 func update_tick_speed() -> void: # faster drops based on game_level
 	var base_speed : float = 1.0
@@ -82,11 +92,7 @@ func update_tick_speed() -> void: # faster drops based on game_level
 	ticker.wait_time = new_speed
 
 func register_with_gameboard() -> void:
-	if gameboard and gameboard.has_method("add_piece"):
-		gameboard.add_piece(self)
-	else:
-		pass
-		#printerr("The parent is not a gameboard or does not have an add_piece method.")
+	gameboard.add_piece()
 
 
 # checks
@@ -101,7 +107,7 @@ func check_floor_collision() -> void:
 func lock_piece() -> void:
 	Grid.set_cell_occupied(Grid.position_to_grid(position), self)
 	is_active_piece = false
-	gameboard.remove_piece(self)
+	gameboard.remove_piece()
 
 # signal functions
 func _on_ticker_timeout() -> void:
