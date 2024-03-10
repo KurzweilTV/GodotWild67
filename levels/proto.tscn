@@ -1,14 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://vlkg0et0ecx8"]
 
-[ext_resource type="Texture2D" uid="uid://b0qitn2drd2h6" path="res://art/background/BottleProto.png" id="1_bfcjq"]
-[ext_resource type="PackedScene" uid="uid://c47c6b351f186" path="res://scenes/capsule.tscn" id="2_0fuqp"]
+[ext_resource type="Texture2D" uid="uid://dacq5g85t6grh" path="res://art/background/SolidBG.png" id="1_kr8x1"]
+[ext_resource type="PackedScene" uid="uid://dl2wqasa6pwrg" path="res://scenes/gameboard.tscn" id="2_rdsck"]
 
 [node name="Proto" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("1_bfcjq")
+texture = ExtResource("1_kr8x1")
 centered = false
+metadata/_edit_lock_ = true
 
-[node name="Capsule" parent="Sprite2D" instance=ExtResource("2_0fuqp")]
-position = Vector2(264, 137)
+[node name="Gameboard" parent="." instance=ExtResource("2_rdsck")]
+position = Vector2(267, 172)

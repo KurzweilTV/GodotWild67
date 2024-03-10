@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dl2wqasa6pwrg"]
+
+[ext_resource type="Texture2D" uid="uid://bej8hnsdptpos" path="res://art/background/GameBoard.png" id="1_hpd0o"]
+[ext_resource type="Script" path="res://scripts/gameboard.gd" id="1_mxnh0"]
+
+[node name="Gameboard" type="Node2D"]
+script = ExtResource("1_mxnh0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hpd0o")
+centered = false

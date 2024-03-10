@@ -3,17 +3,19 @@ class_name Capsule
 
 const RIGHT_EDGE : int = 7
 const LEFT_EDGE : int = 0
-const FLOOR : int = 15
+const FLOOR : int = 16
 
 var is_active_piece : bool = true
 var max_left : int = 0
-var max_right : int = 6
+var max_right : int = 7
 var max_down : int = 15
-var current_grid : Vector2 = Vector2.ZERO
+var marker_pos : Dictionary = {
+	"marker1": Vector2.ZERO,
+	"marker2": Vector2.ZERO
+	}
 
 @onready var ticker: Timer = $Ticker
-@onready var left_marker: Marker2D = $LeftMarker
-@onready var right_marker: Marker2D = $RightMarker
+@onready var markers: Array = [$LeftMarker, $RightMarker]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -36,16 +38,20 @@ func _input(event: InputEvent) -> void:  # player input events
 		rotate_ccw()
 
 func _process(_delta: float) -> void:
-	current_grid = Grid.position_to_grid(position) # track location at all times
+	if is_active_piece:
+		enforce_bounds()
 
 # move and rotate functions
 func move_left() -> void:
 	position.x -= 16
 
+
 func move_right() -> void:
 	position.x += 16
 
 func move_down() -> void:
+	if not is_active_piece:
+		return
 	var movement_options : Dictionary = check_on_grid(position)
 	if movement_options["down"]:
 		position.y += 16
@@ -54,29 +60,34 @@ func rotate_ccw() -> void:
 	rotation_degrees -= 90
 	if rotation_degrees == -360 or rotation_degrees == 360:
 		rotation_degrees = 0
-
-	# prevent from going off the right edge
-	if rotation_degrees == 0:
-		max_right -= 1
-		if current_grid.x >= RIGHT_EDGE:
-			position.x -= 16
-	else:
-		max_right = RIGHT_EDGE
-
-	# prevent from going off the left edge
+	if rotation_degrees == -90:
+		position += Vector2(0, 16)
 	if rotation_degrees == -180:
-		max_left += 1
-		if current_grid.x <= LEFT_EDGE:
-			position.x += 16
-	else:
-		max_left = LEFT_EDGE
-
-	# prevent from going off the bottom
+		position += Vector2(16, 0)
 	if rotation_degrees == -270:
-		max_down -= 1
-	else:
-		max_down = FLOOR
+		position += Vector2(0, -16)
+	if rotation_degrees == 0:
+		position -= Vector2(16, 0)
 
+
+func update_marker_pos() -> void:
+	marker_pos["marker1"] = Grid.position_to_grid(markers[0].global_position)
+	marker_pos["marker2"] = Grid.position_to_grid(markers[1].global_position)
+
+func enforce_bounds() -> void:
+	var adjust_position = Vector2.ZERO
+
+	for marker_name in marker_pos.keys():
+		var marker_grid_loc = marker_pos[marker_name]
+		if marker_grid_loc.x < LEFT_EDGE:
+			adjust_position.x = max(adjust_position.x, LEFT_EDGE - marker_grid_loc.x)
+		elif marker_grid_loc.x > RIGHT_EDGE:
+			adjust_position.x = min(adjust_position.x, RIGHT_EDGE - marker_grid_loc.x)
+		if marker_grid_loc.y >= FLOOR:
+			adjust_position.y = min(adjust_position.y, FLOOR - marker_grid_loc.y)
+
+	var position_adjustment = Grid.grid_to_position(adjust_position) - Grid.grid_to_position(Vector2.ZERO)
+	position += position_adjustment
 
 func update_tick_speed() -> void: # faster drops based on game_level
 	var base_speed : float = 1.0
