@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dl2wqasa6pwrg"]
+[gd_scene load_steps=4 format=3 uid="uid://dl2wqasa6pwrg"]
 
 [ext_resource type="Texture2D" uid="uid://bej8hnsdptpos" path="res://art/background/GameBoard.png" id="1_hpd0o"]
 [ext_resource type="Script" path="res://scripts/gameboard.gd" id="1_mxnh0"]
+[ext_resource type="PackedScene" uid="uid://chbn4qdsreh3b" path="res://scenes/Parasite.tscn" id="3_lx6b8"]
 
 [node name="Gameboard" type="Node2D"]
 script = ExtResource("1_mxnh0")
@@ -9,3 +10,12 @@ script = ExtResource("1_mxnh0")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_hpd0o")
 centered = false
+
+[node name="Parasite" parent="." instance=ExtResource("3_lx6b8")]
+position = Vector2(32, 128)
+
+[node name="Parasite2" parent="." instance=ExtResource("3_lx6b8")]
+position = Vector2(80, 96)
+
+[node name="Parasite3" parent="." instance=ExtResource("3_lx6b8")]
+position = Vector2(80, 176)

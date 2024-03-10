@@ -1,23 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://c47c6b351f186"]
 
 [ext_resource type="Script" path="res://scripts/capsule.gd" id="1_ehhrs"]
-[ext_resource type="Texture2D" uid="uid://bqfs7txi8mrb8" path="res://art/capsules/Capsule.png" id="1_ko4cb"]
+[ext_resource type="Texture2D" uid="uid://cm0cr43rjjcjp" path="res://art/capsules/Pellet.png" id="2_xs15v"]
 
-[node name="Capsule" type="Sprite2D"]
+[node name="Capsule" type="Node2D"]
 texture_filter = 1
-texture = ExtResource("1_ko4cb")
-centered = false
-hframes = 6
-frame = 3
 script = ExtResource("1_ehhrs")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_xs15v")
+centered = false
+hframes = 3
 
 [node name="Ticker" type="Timer" parent="."]
 autostart = true
-
-[node name="LeftMarker" type="Marker2D" parent="."]
-position = Vector2(-4, 0)
-
-[node name="RightMarker" type="Marker2D" parent="."]
-position = Vector2(20, 0)
 
 [connection signal="timeout" from="Ticker" to="." method="_on_ticker_timeout"]
