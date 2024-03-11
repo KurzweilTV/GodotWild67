@@ -30,6 +30,13 @@ window/size/viewport_width=640
 window/size/viewport_height=480
 window/stretch/mode="viewport"
 
+[file_customization]
+
+folder_colors={
+"res://art/": "teal",
+"res://sounds/": "teal"
+}
+
 [input]
 
 left={

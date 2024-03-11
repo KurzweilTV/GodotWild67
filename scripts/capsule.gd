@@ -41,8 +41,8 @@ func _process(_delta: float) -> void:
 
 # move and rotate functions
 func move_left() -> void:
-	if delay:
-		await get_tree().create_timer(0.01).timeout # Shitty Hack
+	#if delay:
+		#await get_tree().create_timer(0.01).timeout # Shitty Hack
 	var new_position = position + Vector2(-16, 0)
 	var grid_pos = Grid.position_to_grid(new_position)
 	if not Grid.is_cell_occupied(grid_pos) and pair_capsule != null and Grid.position_to_grid(pair_capsule.position) != grid_pos:
@@ -140,7 +140,6 @@ func lock_piece_without_propagation() -> void:
 	Grid.set_cell_occupied(Grid.position_to_grid(position), self)
 	is_active_piece = false
 	deregister_with_gameboard()
-
 
 # signal functions
 func _on_ticker_timeout() -> void:
