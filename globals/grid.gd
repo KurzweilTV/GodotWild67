@@ -39,11 +39,12 @@ func set_cell_occupied(grid_pos, occupant):
 	if grid_pos.x >= 0 and grid_pos.x < grid_size.x and grid_pos.y >= 0 and grid_pos.y < grid_size.y:
 		grid[grid_pos.y][grid_pos.x] = occupant
 
-# match handling section
+# Improved match handling section
 func find_and_clear_matches():
 	check_every_row()
 	check_every_column()
 
+# Check and clear matches in every row
 func check_every_row():
 	for y in range(len(grid)):
 		var current_sequence_length = 1
@@ -59,51 +60,45 @@ func check_every_row():
 				current_sequence_length += 1
 			else:
 				if current_sequence_length >= 4 and current_value != null:  # We found a match!
-					# Clear the sequence
 					for clear_x in range(x - current_sequence_length, x):
-						clear_cell(clear_x, y)  # Use clear_cell here
+						clear_cell(clear_x, y)
 					emit_signal("line_cleared")
 				current_sequence_length = 1
+				current_value = value
 
-			current_value = value
-
-			# Check at the end of the row if the last sequence was long enough
 			if x == len(grid[y]) - 1 and current_sequence_length >= 4 and current_value != null:
 				# Clear the sequence
 				for clear_x in range(x - current_sequence_length + 1, x + 1):
-					clear_cell(clear_x, y)  # Ensure clear_x is used correctly here
+					clear_cell(clear_x, y)
 				emit_signal("line_cleared")
-		current_value = null
+		# No need to reset current_value here as it's already null for the next iteration
 
-
+# Check and clear matches in every column
 func check_every_column():
 	for x in range(grid_size.x):
 		var current_sequence_length = 1
 		var current_value = null
 
 		for y in range(grid_size.y):
-			var cell = grid[y][x]  # Accessing each cell
+			var cell = grid[y][x]
 			var value = null
 			if cell != null and typeof(cell) == TYPE_DICTIONARY and cell.size() > 0:
 				value = cell.values()[0]
 
-			# Check if the current cell continues the sequence
 			if y > 0 and value == current_value:
 				current_sequence_length += 1
 			else:
-				# If a sequence was found before this cell
 				if current_sequence_length >= 4 and current_value != null:
 					# Clear the sequence
 					for clear_y in range(y - current_sequence_length, y):
 						clear_cell(x, clear_y)
 					emit_signal("line_cleared")
-				# Reset for the next sequence
 				current_sequence_length = 1
 				current_value = value
 
-		# Check at the end of the column if the last sequence was long enough
+		# After the for loop, y is no longer defined. To fix the error, use grid_size.y instead of y
+		# because we want to clear to the end of the column if there's a match at the end.
 		if current_sequence_length >= 4 and current_value != null:
-			# Clear the sequence at the end of the column
 			for clear_y in range(grid_size.y - current_sequence_length, grid_size.y):
 				clear_cell(x, clear_y)
 			emit_signal("line_cleared")
@@ -111,12 +106,8 @@ func check_every_column():
 
 func clear_cell(x, y):
 	var cell = grid[y][x]
-	# Assuming each cell might store a node reference along with its data
 	if cell != null and typeof(cell) == TYPE_DICTIONARY and "node" in cell:
 		var node = cell["node"]
 		if is_instance_valid(node):
 			node.queue_free()  # Remove the node from the scene
 	grid[y][x] = null  # Clear the grid cell
-
-
-

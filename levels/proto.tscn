@@ -13,3 +13,4 @@ metadata/_edit_lock_ = true
 
 [node name="Gameboard" parent="." instance=ExtResource("2_rdsck")]
 position = Vector2(267, 172)
+metadata/_edit_lock_ = true

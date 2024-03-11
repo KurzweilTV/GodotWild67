@@ -6,42 +6,37 @@
 script/source = "extends Sprite2D
 
 var pellet_color = \"\"
-var piece_type : Dictionary
+var piece_type: Dictionary
 
 func _ready() -> void:
-	piece_type = {\"pill\":pellet_color}
+	piece_type = {\"pellet\": pellet_color}
 	match pellet_color:
 		\"red\": frame = 0
 		\"blue\": frame = 1
 		\"yellow\": frame = 2
-
+	# Set the initial grid position of the pellet as occupied.
+	var start_grid_pos = Grid.position_to_grid(position)
+	Grid.set_cell_occupied(start_grid_pos, piece_type)
 
 func move_down() -> void:
-	var old_position = position
-	var new_position = position + Vector2(0, 16)  # Moving down by 16 pixels
+	var new_position = position + Vector2(0, 16)
+	var new_grid_pos = Grid.position_to_grid(new_position)
 
 	if can_move_to(new_position):
-		position = new_position  # Update the Sprite's position
-
-		# Convert positions to grid coordinates
-		var old_grid_pos = Grid.position_to_grid(old_position)
-		var new_grid_pos = Grid.position_to_grid(new_position)
-
-		clear_cell(old_grid_pos)  # Clear the old position in the grid
-		Grid.set_cell_occupied(new_grid_pos, {\"pill\": pellet_color})  # Mark the new position as occupied
+		var old_grid_pos = Grid.position_to_grid(position)
+		Grid.clear_cell(old_grid_pos.x, old_grid_pos.y)
+		position = new_position
+		Grid.set_cell_occupied(new_grid_pos, piece_type)
+	else:
+		Grid.find_and_clear_matches()
 
 
 func can_move_to(new_position: Vector2) -> bool:
 	var grid_pos = Grid.position_to_grid(new_position)
 	return not Grid.is_cell_occupied(grid_pos)
 
-func clear_cell(grid_pos):
-	Grid.grid[grid_pos.y][grid_pos.x] = null
-
-
 func _on_ticker_timeout() -> void:
 	move_down()
-	Grid.find_and_clear_matches()
 "
 
 [node name="Pellet" type="Sprite2D"]

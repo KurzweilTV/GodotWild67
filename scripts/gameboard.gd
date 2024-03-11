@@ -53,9 +53,7 @@ func spawn_pellets():
 				pellet.position = Grid.grid_to_position(Vector2(x, y))
 				pellet.pellet_color = cell["pellet"]
 				add_child(pellet)
-				# Update the cell to include a reference to the spawned node and a "spawned" flag
 				Grid.grid[y][x] = {"pellet": cell["pellet"], "spawned": true, "node": pellet}
-
 
 # signal functions
 func _on_line_cleared() -> void:
