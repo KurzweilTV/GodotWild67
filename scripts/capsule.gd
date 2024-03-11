@@ -152,6 +152,8 @@ func lock_pieces():
 	pair_capsule.is_active_piece = false
 	Grid.find_and_clear_matches()
 	gameboard.spawn_piece()
+	self.queue_free()
+	pair_capsule.queue_free()
 
 # setup functions
 func randomize_piece() -> void:
@@ -161,9 +163,9 @@ func randomize_piece() -> void:
 	$Sprite.frame = selected_frame
 
 	match selected_frame:
-		0: piece_type = {"pill":"red"}
-		1: piece_type = {"pill":"blue"}
-		2: piece_type = {"pill":"yellow"}
+		0: piece_type = {"pellet":"red"}
+		1: piece_type = {"pellet":"blue"}
+		2: piece_type = {"pellet":"yellow"}
 
 func set_pair_capsule(other_capsule: Capsule) -> void:
 	pair_capsule = other_capsule

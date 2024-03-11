@@ -5,30 +5,54 @@
 [sub_resource type="GDScript" id="GDScript_hy4px"]
 script/source = "extends Sprite2D
 
-var is_active_pellet : bool
+var pellet_color = \"\"
 var piece_type : Dictionary
 
 func _ready() -> void:
-	pass
+	piece_type = {\"pill\":pellet_color}
+	match pellet_color:
+		\"red\": frame = 0
+		\"blue\": frame = 1
+		\"yellow\": frame = 2
+
 
 func move_down() -> void:
-	if not is_active_pellet:
-		return
-	var new_position = position + Vector2(0, 16)
+	var old_position = position
+	var new_position = position + Vector2(0, 16)  # Moving down by 16 pixels
 
 	if can_move_to(new_position):
-		position = new_position
+		position = new_position  # Update the Sprite's position
+
+		# Convert positions to grid coordinates
+		var old_grid_pos = Grid.position_to_grid(old_position)
+		var new_grid_pos = Grid.position_to_grid(new_position)
+
+		clear_cell(old_grid_pos)  # Clear the old position in the grid
+		Grid.set_cell_occupied(new_grid_pos, {\"pill\": pellet_color})  # Mark the new position as occupied
+
 
 func can_move_to(new_position: Vector2) -> bool:
 	var grid_pos = Grid.position_to_grid(new_position)
 	return not Grid.is_cell_occupied(grid_pos)
+
+func clear_cell(grid_pos):
+	Grid.grid[grid_pos.y][grid_pos.x] = null
+
+
+func _on_ticker_timeout() -> void:
+	move_down()
+	Grid.find_and_clear_matches()
 "
 
 [node name="Pellet" type="Sprite2D"]
 texture_filter = 1
 texture = ExtResource("1_1h2lk")
+centered = false
 hframes = 3
 script = SubResource("GDScript_hy4px")
 
 [node name="Ticker" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="Ticker" to="." method="_on_ticker_timeout"]

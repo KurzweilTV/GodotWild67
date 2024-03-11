@@ -1,5 +1,5 @@
 extends Node2D
-
+# This parasite piece is used to visually create the gameboard for each level
 var piece_type : Dictionary
 
 func _ready() -> void:
@@ -13,3 +13,4 @@ func _ready() -> void:
 		2: piece_type = {"parasite":"yellow"}
 
 	Grid.set_cell_occupied(grid_slot, piece_type)
+	queue_free()
