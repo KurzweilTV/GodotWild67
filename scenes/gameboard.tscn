@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dl2wqasa6pwrg"]
+[gd_scene load_steps=5 format=3 uid="uid://dl2wqasa6pwrg"]
 
 [ext_resource type="Script" path="res://scripts/gameboard.gd" id="1_mxnh0"]
-[ext_resource type="Texture2D" uid="uid://b0na6feb47wry" path="res://art/background/NewGameBoard.png" id="2_x78yu"]
+[ext_resource type="Texture2D" uid="uid://cox27inc6hd71" path="res://art/background/NewGameBoard.png" id="2_x78yu"]
 [ext_resource type="PackedScene" uid="uid://chbn4qdsreh3b" path="res://scenes/Parasite.tscn" id="3_lx6b8"]
+[ext_resource type="AudioStream" uid="uid://by6cxq3ef8k4a" path="res://sounds/effects/destroyed.mp3" id="4_qb7vh"]
 
 [node name="Gameboard" type="Node2D"]
 script = ExtResource("1_mxnh0")
@@ -16,7 +17,12 @@ offset = Vector2(-13.77, -14.26)
 position = Vector2(32, 128)
 
 [node name="Parasite2" parent="." instance=ExtResource("3_lx6b8")]
-position = Vector2(80, 96)
+position = Vector2(16, 0)
 
 [node name="Parasite3" parent="." instance=ExtResource("3_lx6b8")]
-position = Vector2(80, 176)
+position = Vector2(80, 240)
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="clear_sound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("4_qb7vh")

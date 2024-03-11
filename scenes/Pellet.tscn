@@ -1,10 +1,34 @@
-[gd_scene load_steps=2 format=3 uid="uid://cj5bif0iivb4"]
+[gd_scene load_steps=3 format=3 uid="uid://cj5bif0iivb4"]
+
+[ext_resource type="Texture2D" uid="uid://c8yp34mkw7ssb" path="res://art/capsules/better_pellets.png" id="1_1h2lk"]
 
 [sub_resource type="GDScript" id="GDScript_hy4px"]
-script/source = "extends Capsule
+script/source = "extends Sprite2D
 
+var is_active_pellet : bool
+var piece_type : Dictionary
 
+func _ready() -> void:
+	pass
+
+func move_down() -> void:
+	if not is_active_pellet:
+		return
+	var new_position = position + Vector2(0, 16)
+
+	if can_move_to(new_position):
+		position = new_position
+
+func can_move_to(new_position: Vector2) -> bool:
+	var grid_pos = Grid.position_to_grid(new_position)
+	return not Grid.is_cell_occupied(grid_pos)
 "
 
 [node name="Pellet" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_1h2lk")
+hframes = 3
 script = SubResource("GDScript_hy4px")
+
+[node name="Ticker" type="Timer" parent="."]
+wait_time = 0.5

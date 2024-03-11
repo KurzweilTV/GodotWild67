@@ -11,11 +11,11 @@ var is_leader : bool = false
 var will_rotate : bool = false
 var is_active_piece : bool = true
 var delay : bool = false
-var piece_color : String
 var max_left : int = 0
 var max_right : int = 7
 var max_down : int = 16
 var current_cycle : int = 0
+var piece_type : Dictionary
 
 @onready var ticker: Timer = $Ticker
 
@@ -37,7 +37,7 @@ func _input(event: InputEvent) -> void:  # player input events
 		rotate_ccw()
 
 func _process(_delta: float) -> void:
-	pass
+	$DebugLabel.text = str(piece_type.values())
 
 func can_move_to(new_position: Vector2, pair_new_position: Vector2) -> bool:
 	var grid_pos = Grid.position_to_grid(new_position)
@@ -53,7 +53,6 @@ func move_left() -> void:
 			pair_capsule.position = pair_new_position
 			$Sounds/move_sound.play()
 
-# Adjusted move_right function
 func move_right() -> void:
 	if is_leader:
 		var new_position = position + Vector2(16, 0)
@@ -63,23 +62,22 @@ func move_right() -> void:
 			pair_capsule.position = pair_new_position
 			$Sounds/move_sound.play()
 
-# Adjusted move_down function
 func move_down() -> void:
 	if not is_active_piece:
 		return
-	var new_position = position + Vector2(0, 8)  # Half grid move down
+	var new_position = position + Vector2(0, 8)  #HACK Half grid move down
 	var pair_new_position = pair_capsule.position + Vector2(0, 8)
 
 	if can_move_to(new_position, pair_new_position):
 		position = new_position
 		pair_capsule.position = pair_new_position
+		$Sounds/move_sound.play()
 	else:
 		# Before locking, adjust position to align with grid if necessary
 		align_with_grid()
 		lock_pieces()
 
 func align_with_grid():
-	# Align the position to the nearest grid spot above to prevent sinking into objects.
 	position.y = floor(position.y / 16) * 16
 	pair_capsule.position.y = floor(pair_capsule.position.y / 16) * 16
 
@@ -112,7 +110,6 @@ func rotate_ccw() -> void:
 func nudge_towards_center() -> void:
 	var nudge_direction = Vector2.ZERO
 	var grid_pos = Grid.position_to_grid(position)
-	var should_nudge_down = false
 
 	# Handle board edges for horizontal nudging
 	if grid_pos.x < LEFT_EDGE:
@@ -149,28 +146,24 @@ func nudge_towards_center() -> void:
 			pair_capsule.position.y += nudge_direction.y * 16
 
 func lock_pieces():
-	Grid.set_cell_occupied(Grid.position_to_grid(position), self)
-	Grid.set_cell_occupied(Grid.position_to_grid(pair_capsule.position), pair_capsule)
+	Grid.set_cell_occupied(Grid.position_to_grid(position), piece_type)
+	Grid.set_cell_occupied(Grid.position_to_grid(pair_capsule.position), pair_capsule.piece_type)
 	is_active_piece = false
 	pair_capsule.is_active_piece = false
+	Grid.find_and_clear_matches()
 	gameboard.spawn_piece()
 
 # setup functions
 func randomize_piece() -> void:
 	var frames = $Sprite.hframes
 	var selected_frame = randi_range(0, frames - 1)
+
 	$Sprite.frame = selected_frame
 
 	match selected_frame:
-		0:
-			piece_color = "Red"
-		1:
-			piece_color = "Blue"
-		2:
-			piece_color = "Yellow"
-		_:
-			piece_color = "Unknown"
-			printerr("This shouldn't happen. Ever")
+		0: piece_type = {"pill":"red"}
+		1: piece_type = {"pill":"blue"}
+		2: piece_type = {"pill":"yellow"}
 
 func set_pair_capsule(other_capsule: Capsule) -> void:
 	pair_capsule = other_capsule

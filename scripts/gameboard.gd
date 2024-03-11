@@ -8,8 +8,9 @@ var spawn_point_2 = Grid.grid_to_position(Vector2(4, 0))
 
 func _ready() -> void:
 	spawn_piece()
+	Grid.connect("line_cleared", Callable(self, "_on_line_cleared"))
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func spawn_piece() -> void:
@@ -25,10 +26,7 @@ func spawn_piece() -> void:
 	add_child(capsule1)
 	add_child(capsule2)
 
-func add_piece() -> void:
-	active_pieces += 1
-	print_debug(active_pieces)
+# signal functions
+func _on_line_cleared() -> void:
+	$Sounds/clear_sound.play()
 
-func remove_piece() -> void:
-	active_pieces -= 1
-	print_debug(active_pieces)

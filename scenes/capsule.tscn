@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://c47c6b351f186"]
+[gd_scene load_steps=6 format=3 uid="uid://c47c6b351f186"]
 
 [ext_resource type="Script" path="res://scripts/capsule.gd" id="1_ehhrs"]
-[ext_resource type="Texture2D" uid="uid://bqa14da4n663k" path="res://art/capsules/better_pellets.png" id="2_2v12x"]
-[ext_resource type="AudioStream" uid="uid://4gvf72564q0m" path="res://sounds/effects/move.mp3" id="3_iqo6n"]
-[ext_resource type="AudioStream" uid="uid://bqcudy63fucfi" path="res://sounds/effects/rotating.mp3" id="4_fie6j"]
+[ext_resource type="Texture2D" uid="uid://c8yp34mkw7ssb" path="res://art/capsules/better_pellets.png" id="2_2v12x"]
+[ext_resource type="AudioStream" uid="uid://64tlsjpu6mgs" path="res://sounds/effects/move.mp3" id="3_iqo6n"]
+[ext_resource type="AudioStream" uid="uid://ds18kj5xswglb" path="res://sounds/effects/rotate.mp3" id="4_aex6u"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l4lna"]
+font_size = 7
 
 [node name="Capsule" type="Node2D"]
 texture_filter = 1
@@ -24,7 +27,17 @@ stream = ExtResource("3_iqo6n")
 volume_db = -5.0
 
 [node name="rotate_sound" type="AudioStreamPlayer2D" parent="Sounds"]
-stream = ExtResource("4_fie6j")
+stream = ExtResource("4_aex6u")
 volume_db = -5.0
+
+[node name="DebugLabel" type="Label" parent="."]
+offset_left = -28.0
+offset_top = -24.0
+offset_right = 44.0
+offset_bottom = -1.0
+text = "Type"
+label_settings = SubResource("LabelSettings_l4lna")
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [connection signal="timeout" from="Ticker" to="." method="_on_ticker_timeout"]

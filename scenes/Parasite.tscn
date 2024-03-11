@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://chbn4qdsreh3b"]
 
-[ext_resource type="Script" path="res://scripts/Parasite.gd" id="1_l6lsl"]
-[ext_resource type="Texture2D" uid="uid://ch6tlnlvucs52" path="res://art/parasites/parasite_sheet.png" id="2_bb4gt"]
+[ext_resource type="Script" path="res://scripts/parasite.gd" id="1_l6lsl"]
+[ext_resource type="Texture2D" uid="uid://6kwd02c26dom" path="res://art/parasites/parasite_sheet.png" id="2_bb4gt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3s041"]
 atlas = ExtResource("2_bb4gt")
