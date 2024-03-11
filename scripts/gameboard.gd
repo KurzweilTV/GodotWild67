@@ -10,8 +10,7 @@ func _ready() -> void:
 	spawn_piece()
 
 func _process(delta: float) -> void:
-	if active_pieces <= 0:
-		spawn_piece()
+	pass
 
 func spawn_piece() -> void:
 	var capsule1 = capsule_scene.instantiate()
@@ -20,7 +19,7 @@ func spawn_piece() -> void:
 	capsule2.position = spawn_point_2
 
 	capsule1.set_pair_capsule(capsule2)
-	capsule2.delay = true
+	capsule1.is_leader = true
 	capsule2.will_rotate = true
 
 	add_child(capsule1)

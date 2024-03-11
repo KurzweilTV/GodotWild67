@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://c47c6b351f186"]
+[gd_scene load_steps=5 format=3 uid="uid://c47c6b351f186"]
 
 [ext_resource type="Script" path="res://scripts/capsule.gd" id="1_ehhrs"]
 [ext_resource type="Texture2D" uid="uid://bqa14da4n663k" path="res://art/capsules/better_pellets.png" id="2_2v12x"]
+[ext_resource type="AudioStream" uid="uid://4gvf72564q0m" path="res://sounds/effects/move.mp3" id="3_iqo6n"]
+[ext_resource type="AudioStream" uid="uid://bqcudy63fucfi" path="res://sounds/effects/rotating.mp3" id="4_fie6j"]
 
 [node name="Capsule" type="Node2D"]
 texture_filter = 1
@@ -14,5 +16,15 @@ hframes = 3
 
 [node name="Ticker" type="Timer" parent="."]
 autostart = true
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="move_sound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("3_iqo6n")
+volume_db = -5.0
+
+[node name="rotate_sound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("4_fie6j")
+volume_db = -5.0
 
 [connection signal="timeout" from="Ticker" to="." method="_on_ticker_timeout"]

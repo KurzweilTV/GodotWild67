@@ -7,6 +7,7 @@ const FLOOR : int = 16
 
 var gameboard
 var pair_capsule
+var is_leader : bool = false
 var will_rotate : bool = false
 var is_active_piece : bool = true
 var delay : bool = false
@@ -22,7 +23,6 @@ func _ready() -> void:
 	gameboard = get_parent()
 	update_tick_speed()
 	randomize_piece()
-	register_with_gameboard()
 
 func _input(event: InputEvent) -> void:  # player input events
 	if not is_active_piece:
@@ -39,52 +39,121 @@ func _input(event: InputEvent) -> void:  # player input events
 func _process(_delta: float) -> void:
 	pass
 
-# move and rotate functions
+func can_move_to(new_position: Vector2, pair_new_position: Vector2) -> bool:
+	var grid_pos = Grid.position_to_grid(new_position)
+	var pair_grid_pos = Grid.position_to_grid(pair_new_position)
+	return not Grid.is_cell_occupied(grid_pos) and not Grid.is_cell_occupied(pair_grid_pos)
+
 func move_left() -> void:
-	#if delay:
-		#await get_tree().create_timer(0.01).timeout # Shitty Hack
-	var new_position = position + Vector2(-16, 0)
-	var grid_pos = Grid.position_to_grid(new_position)
-	if not Grid.is_cell_occupied(grid_pos) and pair_capsule != null and Grid.position_to_grid(pair_capsule.position) != grid_pos:
-		position.x -= 16
+	if is_leader:
+		var new_position = position + Vector2(-16, 0)
+		var pair_new_position = pair_capsule.position + Vector2(-16, 0)
+		if can_move_to(new_position, pair_new_position):
+			position = new_position
+			pair_capsule.position = pair_new_position
+			$Sounds/move_sound.play()
 
+# Adjusted move_right function
 func move_right() -> void:
-	var new_position = position + Vector2(16, 0)
-	var grid_pos = Grid.position_to_grid(new_position)
-	if not Grid.is_cell_occupied(grid_pos) and pair_capsule != null and Grid.position_to_grid(pair_capsule.position) != grid_pos:
-		position.x += 16
+	if is_leader:
+		var new_position = position + Vector2(16, 0)
+		var pair_new_position = pair_capsule.position + Vector2(16, 0)
+		if can_move_to(new_position, pair_new_position):
+			position = new_position
+			pair_capsule.position = pair_new_position
+			$Sounds/move_sound.play()
 
+# Adjusted move_down function
 func move_down() -> void:
 	if not is_active_piece:
 		return
+	var new_position = position + Vector2(0, 8)  # Half grid move down
+	var pair_new_position = pair_capsule.position + Vector2(0, 8)
 
-	var new_position = position + Vector2(0, 16)
-	var grid_pos = Grid.position_to_grid(new_position)
-
-	# Check if the next position is the floor or an already solidified piece
-	if grid_pos.y >= max_down or Grid.is_cell_occupied(grid_pos):
-		lock_piece()
+	if can_move_to(new_position, pair_new_position):
+		position = new_position
+		pair_capsule.position = pair_new_position
 	else:
-		# If there's no collision, move the capsule down
-		position.y += 16
-		ticker.wait_time = 1 # reset ticker to avoid double moves
-		ticker.start()
+		# Before locking, adjust position to align with grid if necessary
+		align_with_grid()
+		lock_pieces()
 
+func align_with_grid():
+	# Align the position to the nearest grid spot above to prevent sinking into objects.
+	position.y = floor(position.y / 16) * 16
+	pair_capsule.position.y = floor(pair_capsule.position.y / 16) * 16
 
 func rotate_ccw() -> void:
-	var rotations : Dictionary = {
+	var rotations: Dictionary = {
 		1: Vector2(-16, -16),  # Move left and up
 		2: Vector2(-16, 16),   # Move left and down
 		3: Vector2(16, 16),    # Move right and down
 		4: Vector2(16, -16),   # Move right and up
 	}
 
+	update_tick_speed()
+
 	if will_rotate:
 		current_cycle += 1
 		if current_cycle > 4:
 			current_cycle = 1
+
 		position += rotations[current_cycle]
-		print("Current cycle: ", current_cycle)
+		$Sounds/rotate_sound.play()
+		nudge_towards_center() # if piece rotation isn't valid
+		update_tick_speed()
+
+#func animate_rotation(rotation_offset: Vector2) -> void:
+	#var final_position = position + rotation_offset
+	#var tween = create_tween()
+	#tween.tween_property(self, "position", final_position, 0.1)
+	#tween.connect("finished", Callable(self, "_on_tween_finished"))
+
+func nudge_towards_center() -> void:
+	var nudge_direction = Vector2.ZERO
+	var grid_pos = Grid.position_to_grid(position)
+	var should_nudge_down = false
+
+	# Handle board edges for horizontal nudging
+	if grid_pos.x < LEFT_EDGE:
+		nudge_direction.x = 1
+	elif grid_pos.x > RIGHT_EDGE:
+		nudge_direction.x = -1
+
+	# Check for occupation and decide on nudging direction
+	if Grid.is_cell_occupied(grid_pos):
+		match current_cycle:
+			1:
+				nudge_direction.y = 1  # Nudge down for specific rotation state
+			2:
+				nudge_direction.x = 1  # Nudge right
+			3: #HACK This is bad and I hate it.
+				rotate_ccw()
+				rotate_ccw()
+				rotate_ccw()
+				lock_pieces()
+				return
+			4:
+				nudge_direction.x = -1  # Nudge left
+
+	# horizontal nudge if somethins is there
+	if nudge_direction.x != 0:
+		position.x += nudge_direction.x * 16
+		if pair_capsule != null:
+			pair_capsule.position.x += nudge_direction.x * 16
+
+	# vertical nudge of we hit the roof or a gamepiece
+	if nudge_direction.y != 0:
+		position.y += nudge_direction.y * 16
+		if pair_capsule != null:
+			pair_capsule.position.y += nudge_direction.y * 16
+
+func lock_pieces():
+	Grid.set_cell_occupied(Grid.position_to_grid(position), self)
+	Grid.set_cell_occupied(Grid.position_to_grid(pair_capsule.position), pair_capsule)
+	is_active_piece = false
+	pair_capsule.is_active_piece = false
+	gameboard.spawn_piece()
 
 # setup functions
 func randomize_piece() -> void:
@@ -108,38 +177,17 @@ func set_pair_capsule(other_capsule: Capsule) -> void:
 	other_capsule.pair_capsule = self
 
 func update_tick_speed() -> void: # faster drops based on game_level
+	ticker.stop()
 	var base_speed : float = 1.0
 	var max_speed : float = 0.1
 	var new_speed: float = lerp(base_speed, max_speed, float(GameManager.game_level - 1) / 8.0)
 	ticker.wait_time = new_speed
-
-func register_with_gameboard() -> void:
-	gameboard.add_piece()
-
-func deregister_with_gameboard() -> void:
-	gameboard.remove_piece()
+	ticker.start()
 
 # checks
-func check_wall_collision() -> void:
-	if position.x - 16 < LEFT_EDGE:
-		pass
-
 func check_floor_collision() -> void:
 	if position.y + 16 >= FLOOR:  # Check if bottom edge reaches floor
-		lock_piece()
-
-func lock_piece() -> void:
-	Grid.set_cell_occupied(Grid.position_to_grid(position), self)
-	is_active_piece = false
-	if pair_capsule != null and pair_capsule.is_active_piece:
-		pair_capsule.lock_piece_without_propagation()  # Lock the pair without propagating back
-	deregister_with_gameboard()
-
-func lock_piece_without_propagation() -> void:
-	# Similar to lock_piece but without calling lock_piece on the paired capsule again
-	Grid.set_cell_occupied(Grid.position_to_grid(position), self)
-	is_active_piece = false
-	deregister_with_gameboard()
+		lock_pieces()
 
 # signal functions
 func _on_ticker_timeout() -> void:
