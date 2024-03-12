@@ -9,13 +9,13 @@
 position = Vector2(16, 96)
 
 [node name="Parasite2" parent="." index="3" instance=ExtResource("2_4bdtn")]
-position = Vector2(64, 112)
+position = Vector2(80, 112)
 
 [node name="Parasite3" parent="." index="4" instance=ExtResource("2_4bdtn")]
-position = Vector2(112, 160)
+position = Vector2(112, 64)
 
 [node name="Parasite4" parent="." index="5" instance=ExtResource("2_4bdtn")]
-position = Vector2(112, 176)
+position = Vector2(16, 144)
 
 [node name="Parasite5" parent="." index="6" instance=ExtResource("2_4bdtn")]
 position = Vector2(96, 176)

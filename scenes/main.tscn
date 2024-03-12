@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://vlkg0et0ecx8"]
+[gd_scene load_steps=3 format=3 uid="uid://vlkg0et0ecx8"]
 
 [ext_resource type="Script" path="res://scripts/level_loader.gd" id="1_a1t5j"]
 [ext_resource type="Texture2D" uid="uid://dtqxomo6qws42" path="res://art/background/SolidBG.png" id="1_kr8x1"]
-[ext_resource type="PackedScene" uid="uid://2cpb2p45ycsx" path="res://levels/level1.tscn" id="2_ke3y2"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_a1t5j")
@@ -15,7 +14,4 @@ metadata/_edit_lock_ = true
 
 [node name="LevelLoader" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(256, 129)
-
-[node name="Gameboard" parent="." instance=ExtResource("2_ke3y2")]
 position = Vector2(256, 129)

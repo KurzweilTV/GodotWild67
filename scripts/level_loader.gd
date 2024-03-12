@@ -1,12 +1,38 @@
 extends Node2D
-# This script handles loading each level into the game
-@onready var gameboard_loc = %LevelLoader.global_position
+
+@onready var gameboard_loc = $LevelLoader.global_position
 var available_levels : Array = []
 var loaded_levels : Array = []
-var level_count : int = 0
+var current_level_instance = null
+var level_index : int = 0 # Start with level 1
 
 func _ready() -> void:
 	count_available_levels()
+	load_levels()
+	start_level(level_index) # Start with the first level
+
+func _unhandled_input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("debug_next_level"):
+		load_next_level()
+
+func start_level(level_index : int):
+	if current_level_instance:
+		remove_child(current_level_instance)
+		current_level_instance.queue_free()
+
+	var level = loaded_levels[level_index]
+	var new_level_instance = level.instantiate()
+	new_level_instance.global_position = gameboard_loc
+	add_child(new_level_instance)
+	current_level_instance = new_level_instance
+
+func load_next_level():
+	level_index += 1
+	if level_index >= loaded_levels.size():
+		print("No more levels.")
+		return # TODO handle finishing the game here. load a you win maybe.
+
+	start_level(level_index)
 
 func count_available_levels():
 	var dir = DirAccess.open("res://levels")
@@ -14,16 +40,18 @@ func count_available_levels():
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
 		while file_name != "":
-			available_levels.append(file_name)
+			if file_name.ends_with(".tscn"):
+				available_levels.append(file_name)
 			file_name = dir.get_next()
-		level_count = available_levels.size()
-		print("We found %d levels" % level_count)
-		load_levels(level_count)
+		dir.list_dir_end()
 	else:
-		print("An error occurred when trying to access the path.")
+		printerr("Failed to access levels directory.")
 
-func load_levels(count_number):
-	for i in range(1, count_number + 1):
-		var level_path = "res://levels/level%d.tscn" % i
-		GameManager.available_levels.append(level_path)
-	return loaded_levels
+func load_levels():
+	for i in range(available_levels.size()):
+		var level_path = "res://levels/level%d.tscn" % (i + 1)
+		var level = load(level_path)
+		if level:
+			loaded_levels.append(level)
+		else:
+			printerr("Failed to load level at path: %s" % level_path)

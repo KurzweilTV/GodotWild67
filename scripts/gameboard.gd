@@ -20,6 +20,8 @@ func _process(_delta: float) -> void:
 func spawn_piece() -> void:
 	var capsule1 = capsule_scene.instantiate()
 	var capsule2 = capsule_scene.instantiate()
+	capsule1.connect("piece_locked", Callable(self, "_on_piece_locked"))
+	capsule2.connect("piece_locked", Callable(self, "_on_piece_locked"))
 	capsule1.position = spawn_point_1
 	capsule2.position = spawn_point_2
 
@@ -58,4 +60,7 @@ func spawn_pellets():
 # signal functions
 func _on_line_cleared() -> void:
 	$Sounds/clear_sound.play()
+
+func _on_piece_locked() -> void:
+	$Sounds/lock_sound.play()
 

@@ -1,6 +1,8 @@
 extends Node2D
 class_name Capsule
 
+signal piece_locked
+
 const RIGHT_EDGE : int = 7
 const LEFT_EDGE : int = 0
 const FLOOR : int = 16
@@ -71,7 +73,6 @@ func move_down() -> void:
 	if can_move_to(new_position, pair_new_position):
 		position = new_position
 		pair_capsule.position = pair_new_position
-		$Sounds/move_sound.play()
 	else:
 		# Before locking, adjust position to align with grid if necessary
 		align_with_grid()
@@ -83,14 +84,13 @@ func align_with_grid():
 
 func rotate_ccw() -> void:
 	var rotations: Dictionary = {
-		1: Vector2(-16, -16),  # Move left and up
-		2: Vector2(-16, 16),   # Move left and down
-		3: Vector2(16, 16),    # Move right and down
-		4: Vector2(16, -16),   # Move right and up
+		1: Vector2(-16, -16),
+		2: Vector2(-16, 16),
+		3: Vector2(16, 16),
+		4: Vector2(16, -16),
 	}
-
 	update_tick_speed()
-
+	# Rotate the piece
 	if will_rotate:
 		current_cycle += 1
 		if current_cycle > 4:
@@ -98,7 +98,7 @@ func rotate_ccw() -> void:
 
 		position += rotations[current_cycle]
 		$Sounds/rotate_sound.play()
-		nudge_towards_center() # if piece rotation isn't valid
+		nudge_towards_center() # Adjust if needed
 		update_tick_speed()
 
 #func animate_rotation(rotation_offset: Vector2) -> void:
@@ -146,6 +146,7 @@ func nudge_towards_center() -> void:
 			pair_capsule.position.y += nudge_direction.y * 16
 
 func lock_pieces():
+	emit_signal("piece_locked")
 	Grid.set_cell_occupied(Grid.position_to_grid(position), piece_type)
 	Grid.set_cell_occupied(Grid.position_to_grid(pair_capsule.position), pair_capsule.piece_type)
 	is_active_piece = false
@@ -154,6 +155,7 @@ func lock_pieces():
 	gameboard.spawn_piece()
 	self.queue_free()
 	pair_capsule.queue_free()
+
 
 # setup functions
 func randomize_piece() -> void:

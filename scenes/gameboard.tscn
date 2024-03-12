@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dl2wqasa6pwrg"]
+[gd_scene load_steps=5 format=3 uid="uid://dl2wqasa6pwrg"]
 
 [ext_resource type="Script" path="res://scripts/gameboard.gd" id="1_mxnh0"]
 [ext_resource type="Texture2D" uid="uid://cox27inc6hd71" path="res://art/background/NewGameBoard.png" id="2_x78yu"]
 [ext_resource type="AudioStream" uid="uid://by6cxq3ef8k4a" path="res://sounds/effects/destroyed.mp3" id="4_qb7vh"]
+[ext_resource type="AudioStream" uid="uid://cb7bp8wolucnp" path="res://sounds/effects/falling.mp3" id="4_whhg2"]
 
 [node name="Gameboard" type="Node2D"]
 script = ExtResource("1_mxnh0")
@@ -17,3 +18,7 @@ offset = Vector2(-13.77, -14.26)
 
 [node name="clear_sound" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("4_qb7vh")
+
+[node name="lock_sound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("4_whhg2")
+volume_db = -10.0
