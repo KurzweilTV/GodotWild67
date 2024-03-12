@@ -10,6 +10,7 @@ func _ready() -> void:
 	count_available_levels()
 	load_levels()
 	start_level(level_index) # Start with the first level
+	connect("line_cleared", Callable(self, "_on_line_cleared"))
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("debug_next_level"):
@@ -22,6 +23,7 @@ func start_level(level_index : int):
 
 	var level = loaded_levels[level_index]
 	var new_level_instance = level.instantiate()
+	new_level_instance.connect("level_complete", Callable(self, "_on_level_complete"))
 	new_level_instance.global_position = gameboard_loc
 	add_child(new_level_instance)
 	current_level_instance = new_level_instance
@@ -55,3 +57,8 @@ func load_levels():
 			loaded_levels.append(level)
 		else:
 			printerr("Failed to load level at path: %s" % level_path)
+
+# signals
+
+func _on_level_complete() -> void:
+	load_next_level()

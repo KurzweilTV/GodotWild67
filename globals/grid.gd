@@ -100,7 +100,6 @@ func check_every_column():
 				clear_cell(x, clear_y)
 			emit_signal("line_cleared")
 
-
 func clear_cell(x, y):
 	var cell = grid[y][x]
 	if cell != null and typeof(cell) == TYPE_DICTIONARY and "node" in cell:
@@ -108,3 +107,8 @@ func clear_cell(x, y):
 		if is_instance_valid(node):
 			node.queue_free()  # Remove the node from the scene
 	grid[y][x] = null  # Clear the grid cell
+
+func update_parasite_count() -> int: #HACK way of figuring out the number of parasites on the board
+	var grid_string = str(grid)
+	var count = grid_string.count("parasite")
+	return count
