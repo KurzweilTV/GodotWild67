@@ -1,4 +1,5 @@
 extends Node2D
+# This is what gets spawned on the board based on the state of the grid.
 
 @onready var art := $Sprite2D
 var parasite_color

@@ -71,7 +71,6 @@ func check_every_row():
 				for clear_x in range(x - current_sequence_length + 1, x + 1):
 					clear_cell(clear_x, y)
 				emit_signal("line_cleared")
-		# No need to reset current_value here as it's already null for the next iteration
 
 # Check and clear matches in every column
 func check_every_column():
@@ -96,8 +95,6 @@ func check_every_column():
 				current_sequence_length = 1
 				current_value = value
 
-		# After the for loop, y is no longer defined. To fix the error, use grid_size.y instead of y
-		# because we want to clear to the end of the column if there's a match at the end.
 		if current_sequence_length >= 4 and current_value != null:
 			for clear_y in range(grid_size.y - current_sequence_length, grid_size.y):
 				clear_cell(x, clear_y)
