@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://2cpb2p45ycsx"]
+
+[ext_resource type="PackedScene" uid="uid://dl2wqasa6pwrg" path="res://scenes/gameboard.tscn" id="1_rsj2q"]
+[ext_resource type="PackedScene" uid="uid://chbn4qdsreh3b" path="res://scenes/parasite.tscn" id="2_l4qn6"]
+
+[node name="Gameboard" instance=ExtResource("1_rsj2q")]
+
+[node name="Parasite" parent="." index="2" instance=ExtResource("2_l4qn6")]
+position = Vector2(16, 96)
+
+[node name="Parasite2" parent="." index="3" instance=ExtResource("2_l4qn6")]
+position = Vector2(64, 112)
+
+[node name="Parasite3" parent="." index="4" instance=ExtResource("2_l4qn6")]
+position = Vector2(112, 160)
+
+[node name="Parasite4" parent="." index="5" instance=ExtResource("2_l4qn6")]
+position = Vector2(112, 176)
+
+[node name="Parasite5" parent="." index="6" instance=ExtResource("2_l4qn6")]
+position = Vector2(96, 176)
+
+[node name="Parasite6" parent="." index="7" instance=ExtResource("2_l4qn6")]
+position = Vector2(16, 224)
