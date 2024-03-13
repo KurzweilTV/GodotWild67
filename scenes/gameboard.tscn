@@ -1,10 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dl2wqasa6pwrg"]
+[gd_scene load_steps=7 format=3 uid="uid://b7ibtndownoqf"]
 
 [ext_resource type="Script" path="res://scripts/gameboard.gd" id="1_mxnh0"]
-[ext_resource type="Texture2D" uid="uid://cox27inc6hd71" path="res://art/background/NewGameBoard.png" id="2_x78yu"]
-[ext_resource type="AudioStream" uid="uid://by6cxq3ef8k4a" path="res://sounds/effects/destroyed.mp3" id="4_qb7vh"]
-[ext_resource type="AudioStream" uid="uid://cb7bp8wolucnp" path="res://sounds/effects/falling.mp3" id="4_whhg2"]
-[ext_resource type="FontFile" uid="uid://jkgmgke4ckjs" path="res://fonts/nokia.ttf" id="5_cykwa"]
+[ext_resource type="Texture2D" uid="uid://b3wrr65tthlc0" path="res://art/background/NewGameBoard.png" id="2_x78yu"]
+[ext_resource type="AudioStream" uid="uid://b8ld0htife8tn" path="res://sounds/effects/destroyed.mp3" id="4_qb7vh"]
+[ext_resource type="AudioStream" uid="uid://cme3ls26kueit" path="res://sounds/effects/falling.mp3" id="4_whhg2"]
+[ext_resource type="FontFile" uid="uid://erbk2ool8oq8" path="res://fonts/nokia.ttf" id="5_cykwa"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_d76ag"]
 font = ExtResource("5_cykwa")
@@ -25,11 +25,9 @@ offset = Vector2(-13.77, -14.26)
 
 [node name="clear_sound" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("4_qb7vh")
-bus = &"Effects"
 
 [node name="lock_sound" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("4_whhg2")
-bus = &"Effects"
 
 [node name="DebugLabel" type="Label" parent="."]
 visible = false

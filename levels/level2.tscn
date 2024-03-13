@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d1npb6t8oxwq7"]
 
-[ext_resource type="PackedScene" uid="uid://dl2wqasa6pwrg" path="res://scenes/gameboard.tscn" id="1_y2ufb"]
-[ext_resource type="PackedScene" uid="uid://chbn4qdsreh3b" path="res://scenes/parasite.tscn" id="2_tdi87"]
+[ext_resource type="PackedScene" uid="uid://b7ibtndownoqf" path="res://scenes/gameboard.tscn" id="1_y2ufb"]
+[ext_resource type="PackedScene" uid="uid://b6ldcg633admo" path="res://scenes/parasite.tscn" id="2_tdi87"]
 
 [node name="Gameboard" instance=ExtResource("1_y2ufb")]
 

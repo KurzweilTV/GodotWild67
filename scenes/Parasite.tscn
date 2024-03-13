@@ -1,18 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://chbn4qdsreh3b"]
+[gd_scene load_steps=7 format=3 uid="uid://b6ldcg633admo"]
 
-[ext_resource type="Script" path="res://scripts/parasite.gd" id="1_y2xlo"]
-[ext_resource type="Texture2D" uid="uid://6kwd02c26dom" path="res://art/parasites/parasite_sheet.png" id="2_xkc3p"]
+[ext_resource type="Script" path="res://scripts/parasite.gd" id="1_84xs5"]
+[ext_resource type="Texture2D" uid="uid://b2mumswexhgh1" path="res://art/parasites/parasite_sheet.png" id="2_6xr4s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3s041"]
-atlas = ExtResource("2_xkc3p")
+atlas = ExtResource("2_6xr4s")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_53lqr"]
-atlas = ExtResource("2_xkc3p")
+atlas = ExtResource("2_6xr4s")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pfts3"]
-atlas = ExtResource("2_xkc3p")
+atlas = ExtResource("2_6xr4s")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0rice"]
@@ -33,7 +33,7 @@ animations = [{
 }]
 
 [node name="Parasite" type="Node2D"]
-script = ExtResource("1_y2xlo")
+script = ExtResource("1_84xs5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
