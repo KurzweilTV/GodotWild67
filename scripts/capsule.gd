@@ -1,5 +1,5 @@
 extends Node2D
-class_name Capsule
+
 
 signal piece_locked
 
@@ -175,7 +175,7 @@ func randomize_piece() -> void:
 		1: piece_type = {"pellet":"blue"}
 		2: piece_type = {"pellet":"yellow"}
 
-func set_pair_capsule(other_capsule: Capsule) -> void:
+func set_pair_capsule(other_capsule) -> void:
 	pair_capsule = other_capsule
 	other_capsule.pair_capsule = self
 

@@ -7,9 +7,9 @@ extends HSlider
 func _ready():
 	bus_index = AudioServer.get_bus_index(bus_name)
 	value_changed.connect(_on_value_changed)
-	
+
 	#value = db_to_linear(AudioServer.get_bus_volume_db(bus_index))
-	
+
 func _physics_process(delta):
 	print(AudioServer.get_bus_volume_db(bus_index))
 
