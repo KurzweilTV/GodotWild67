@@ -8,6 +8,6 @@ var piece_type : Dictionary = {}
 func _ready() -> void:
 	piece_type = {"parasite":parasite_color}
 	match parasite_color:
-		"red": art.frame = 0
-		"blue": art.frame = 1
-		"yellow": art.frame = 2
+		"red": art.play("red")
+		"blue": art.play("blue")
+		"yellow": art.play("yellow")

@@ -112,3 +112,6 @@ func update_parasite_count() -> int: #HACK way of figuring out the number of par
 	var grid_string = str(grid)
 	var count = grid_string.count("parasite")
 	return count
+
+func apply_scoring(virus_count : int):
+	GameManager.add_score(GameManager.calculate_score(virus_count))

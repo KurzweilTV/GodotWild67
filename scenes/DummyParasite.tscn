@@ -1,14 +1,73 @@
-[gd_scene load_steps=3 format=3 uid="uid://ct7chsly70c7t"]
+[gd_scene load_steps=10 format=3 uid="uid://ct7chsly70c7t"]
 
 [ext_resource type="Script" path="res://scripts/DummyParasite.gd" id="1_i1edo"]
-[ext_resource type="Texture2D" uid="uid://6kwd02c26dom" path="res://art/parasites/parasite_sheet.png" id="2_ph8y8"]
+[ext_resource type="Texture2D" uid="uid://blubw8jvbtgc3" path="res://art/parasites/anim_parasites.png" id="2_7o4jp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjdyy"]
+atlas = ExtResource("2_7o4jp")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_duiq4"]
+atlas = ExtResource("2_7o4jp")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0d1n"]
+atlas = ExtResource("2_7o4jp")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtv6l"]
+atlas = ExtResource("2_7o4jp")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bebv"]
+atlas = ExtResource("2_7o4jp")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3ion"]
+atlas = ExtResource("2_7o4jp")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rm6iq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjdyy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_duiq4")
+}],
+"loop": true,
+"name": &"blue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0d1n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtv6l")
+}],
+"loop": true,
+"name": &"red",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bebv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3ion")
+}],
+"loop": true,
+"name": &"yellow",
+"speed": 5.0
+}]
 
 [node name="DummyParasite" type="Node2D"]
 script = ExtResource("1_i1edo")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_ph8y8")
+sprite_frames = SubResource("SpriteFrames_rm6iq")
+animation = &"blue"
 centered = false
-hframes = 3
-frame = 1

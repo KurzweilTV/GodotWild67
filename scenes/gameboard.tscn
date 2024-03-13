@@ -25,15 +25,18 @@ offset = Vector2(-13.77, -14.26)
 
 [node name="clear_sound" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("4_qb7vh")
+bus = &"Effects"
 
 [node name="lock_sound" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("4_whhg2")
-volume_db = -10.0
+bus = &"Effects"
 
 [node name="DebugLabel" type="Label" parent="."]
+visible = false
 texture_filter = 1
-offset_left = 144.0
-offset_right = 184.0
-offset_bottom = 23.0
+offset_left = -240.0
+offset_top = 288.0
+offset_right = -73.0
+offset_bottom = 315.0
 text = "Parasites = 0"
 label_settings = SubResource("LabelSettings_d76ag")

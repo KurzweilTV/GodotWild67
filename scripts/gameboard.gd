@@ -19,14 +19,11 @@ func _ready() -> void:
 	Grid.connect("line_cleared", Callable(self, "_on_line_cleared"))
 	spawn_piece()
 	spawn_parasites()
+	GameManager.game_parasites = Grid.update_parasite_count()
 
 func _process(_delta: float) -> void:
 	spawn_parasites()
 	spawn_pellets()
-	parasite_count = Grid.update_parasite_count()
-	label.text = "Parasites: " + str(parasite_count)
-	if parasite_count == 0:
-		emit_signal("level_complete")
 
 func spawn_piece() -> void:
 	var capsule1 = capsule_scene.instantiate()
@@ -70,7 +67,9 @@ func spawn_pellets():
 
 # signal functions
 func _on_line_cleared() -> void:
+	GameManager.game_parasites = Grid.update_parasite_count()
 	$Sounds/clear_sound.play()
 
 func _on_piece_locked() -> void:
+	GameManager.game_parasites = Grid.update_parasite_count()
 	$Sounds/lock_sound.play()

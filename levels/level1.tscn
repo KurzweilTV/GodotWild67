@@ -27,7 +27,7 @@ virus_color = "Random"
 
 [node name="Parasite8" parent="." index="7" instance=ExtResource("2_l4qn6")]
 position = Vector2(0, 96)
-virus_color = "Random"
+virus_color = "Blue"
 
 [node name="Parasite3" parent="." index="8" instance=ExtResource("2_l4qn6")]
 position = Vector2(96, 240)

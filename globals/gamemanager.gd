@@ -6,6 +6,10 @@ func _ready() -> void:
 var game_level : int = 1
 var game_score : int = 0
 var game_speed : String
+var game_parasites : int
+
+func _process(_delta: float) -> void:
+	Grid.update_parasite_count()
 
 func calculate_score(parasites_cleared : int) -> int:
 	var score_multiplier : int = 1

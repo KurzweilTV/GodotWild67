@@ -8,13 +8,16 @@ func _ready() -> void:
 	virus_color = virus_color.to_lower()
 	var grid_slot = Grid.position_to_grid(position)
 	if virus_color == "random" or virus_color == "" or virus_color == null:
-		var random_frame = randi_range(0, 2)
+		var random_frame = randi_range(0, 5)
 		$AnimatedSprite2D.frame = random_frame
 
 		match random_frame:
 			0: piece_type = {"parasite":"blue"}
-			1: piece_type = {"parasite":"red"}
-			2: piece_type = {"parasite":"yellow"}
+			1: piece_type = {"parasite":"blue"}
+			2: piece_type = {"parasite":"red"}
+			3: piece_type = {"parasite":"red"}
+			4: piece_type = {"parasite":"yellow"}
+			5: piece_type = {"parasite":"yellow"}
 	else:
 		piece_type = {"parasite":virus_color}
 
