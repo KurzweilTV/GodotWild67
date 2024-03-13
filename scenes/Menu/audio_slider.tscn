@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfxhl2y7jwm4w"]
+
+[ext_resource type="Script" path="res://Scripts/master_audio_slider.gd" id="1_l8rjc"]
+
+[node name="master_audio_slider" type="HSlider"]
+offset_left = 112.0
+offset_top = 135.0
+offset_right = 533.0
+offset_bottom = 151.0
+min_value = -10.0
+max_value = 0.0
+script = ExtResource("1_l8rjc")
+bus_name = "Master"
+
+[connection signal="value_changed" from="." to="." method="_on_value_changed"]

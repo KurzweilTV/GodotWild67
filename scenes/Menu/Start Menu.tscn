@@ -1,0 +1,120 @@
+[gd_scene load_steps=14 format=3 uid="uid://b2km4da3qmsw8"]
+
+[ext_resource type="Script" path="res://Scripts/start_menu_buttons.gd" id="1_bnwbo"]
+[ext_resource type="Texture2D" uid="uid://bxcecj2wyc3qs" path="res://art/ui/Dr.Parasite Menu.png" id="2_7we0a"]
+[ext_resource type="Texture2D" uid="uid://bh6mrnajplgdb" path="res://art/ui/Dr.Parasite Start button.png" id="3_hp5wq"]
+[ext_resource type="Texture2D" uid="uid://bkeewqe2ni1oe" path="res://art/ui/Dr.Parasite Options Button.png" id="4_o64wd"]
+[ext_resource type="Texture2D" uid="uid://dio0p55t8svn2" path="res://art/ui/Dr.Parasite Quit button.png" id="5_sip3t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_savut"]
+bg_color = Color(0.94902, 0.839216, 0.305882, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="Theme" id="Theme_hlgaj"]
+Panel/styles/panel = SubResource("StyleBoxFlat_savut")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_upnvu"]
+bg_color = Color(0.933333, 0.141176, 0.192157, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bq1jy"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tpkoe"]
+bg_color = Color(0.933333, 0.141176, 0.192157, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jw6ne"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8h1jg"]
+bg_color = Color(0.933333, 0.141176, 0.192157, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66f22"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bnwbo")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = -232.0
+offset_top = 16.0
+offset_right = 232.0
+offset_bottom = 176.0
+theme = SubResource("Theme_hlgaj")
+texture = ExtResource("2_7we0a")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 56.0
+offset_right = 193.0
+offset_bottom = 136.0
+theme_override_constants/separation = 15
+
+[node name="start_game" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_upnvu")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bq1jy")
+icon = ExtResource("3_hp5wq")
+icon_alignment = 1
+
+[node name="options" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_tpkoe")
+theme_override_styles/normal = SubResource("StyleBoxFlat_jw6ne")
+icon = ExtResource("4_o64wd")
+icon_alignment = 1
+
+[node name="quit" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_8h1jg")
+theme_override_styles/normal = SubResource("StyleBoxFlat_66f22")
+icon = ExtResource("5_sip3t")
+icon_alignment = 1
+
+[connection signal="pressed" from="Control/VBoxContainer/start_game" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/quit" to="." method="_on_quit_pressed"]

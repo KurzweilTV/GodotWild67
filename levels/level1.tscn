@@ -18,12 +18,12 @@ position = Vector2(112, 176)
 virus_color = "Random"
 
 [node name="Parasite6" parent="." index="5" instance=ExtResource("2_l4qn6")]
-position = Vector2(48, 208)
-virus_color = "Random"
+position = Vector2(64, 240)
+virus_color = "Red"
 
 [node name="Parasite7" parent="." index="6" instance=ExtResource("2_l4qn6")]
-position = Vector2(64, 160)
-virus_color = "Random"
+position = Vector2(48, 240)
+virus_color = "Red"
 
 [node name="Parasite8" parent="." index="7" instance=ExtResource("2_l4qn6")]
 position = Vector2(0, 96)
@@ -31,7 +31,7 @@ virus_color = "Blue"
 
 [node name="Parasite3" parent="." index="8" instance=ExtResource("2_l4qn6")]
 position = Vector2(96, 240)
-virus_color = "Random"
+virus_color = "Red"
 
 [node name="Parasite5" parent="." index="9" instance=ExtResource("2_l4qn6")]
 position = Vector2(112, 208)

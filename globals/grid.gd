@@ -46,6 +46,7 @@ func find_and_clear_matches():
 
 # Check and clear matches in every row
 func check_every_row():
+	var original_parasites = GameManager.game_parasites
 	for y in range(len(grid)):
 		var current_sequence_length = 1
 		var current_value = null
@@ -63,6 +64,8 @@ func check_every_row():
 					for clear_x in range(x - current_sequence_length, x):
 						clear_cell(clear_x, y)
 					emit_signal("line_cleared")
+					var parasites_killed = original_parasites - GameManager.game_parasites
+					apply_scoring(parasites_killed)
 				current_sequence_length = 1
 				current_value = value
 
@@ -71,9 +74,12 @@ func check_every_row():
 				for clear_x in range(x - current_sequence_length + 1, x + 1):
 					clear_cell(clear_x, y)
 				emit_signal("line_cleared")
+				var parasites_killed = original_parasites - GameManager.game_parasites
+				apply_scoring(parasites_killed)
 
 # Check and clear matches in every column
 func check_every_column():
+	var original_parasites = GameManager.game_parasites
 	for x in range(grid_size.x):
 		var current_sequence_length = 1
 		var current_value = null
@@ -88,10 +94,11 @@ func check_every_column():
 				current_sequence_length += 1
 			else:
 				if current_sequence_length >= 4 and current_value != null:
-					# Clear the sequence
 					for clear_y in range(y - current_sequence_length, y):
 						clear_cell(x, clear_y)
 					emit_signal("line_cleared")
+					var parasites_killed = original_parasites - GameManager.game_parasites
+					apply_scoring(parasites_killed)
 				current_sequence_length = 1
 				current_value = value
 
@@ -99,6 +106,8 @@ func check_every_column():
 			for clear_y in range(grid_size.y - current_sequence_length, grid_size.y):
 				clear_cell(x, clear_y)
 			emit_signal("line_cleared")
+			var parasites_killed = original_parasites - GameManager.game_parasites
+			apply_scoring(parasites_killed)
 
 func clear_cell(x, y):
 	var cell = grid[y][x]
