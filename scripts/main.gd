@@ -13,6 +13,7 @@ var current_level_instance = null
 var level_index : int = 0 # Start with level 1
 
 func _ready() -> void:
+	$Sounds/GameMusic.play()
 	count_available_levels()
 	load_levels()
 	start_level() # Start with the first level

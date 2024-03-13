@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://vlkg0et0ecx8"]
+[gd_scene load_steps=7 format=3 uid="uid://vlkg0et0ecx8"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_a1t5j"]
 [ext_resource type="Texture2D" uid="uid://dtqxomo6qws42" path="res://art/background/SolidBG.png" id="1_kr8x1"]
 [ext_resource type="Texture2D" uid="uid://bjksueo4um5jb" path="res://art/ui/Dr.Parasite Clip Board Medium.png" id="3_h7u8f"]
 [ext_resource type="FontFile" uid="uid://jkgmgke4ckjs" path="res://fonts/nokia.ttf" id="4_wxvck"]
+[ext_resource type="AudioStream" uid="uid://n4lxosxkhaoo" path="res://sounds/music/game_music.ogg" id="5_ptbe0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_f6wpt"]
 font = ExtResource("4_wxvck")
@@ -40,7 +41,6 @@ offset_bottom = 80.0
 color = Color(1, 1, 1, 0)
 
 [node name="LevelText" type="Label" parent="UI_Clipboard/Container"]
-auto_translate_mode = 1
 texture_filter = 1
 layout_mode = 0
 offset_left = 76.0
@@ -50,7 +50,6 @@ text = "Level"
 label_settings = SubResource("LabelSettings_f6wpt")
 
 [node name="Level" type="Label" parent="UI_Clipboard/Container"]
-auto_translate_mode = 1
 texture_filter = 1
 layout_mode = 0
 offset_left = 76.0
@@ -62,7 +61,6 @@ label_settings = SubResource("LabelSettings_f6wpt")
 horizontal_alignment = 2
 
 [node name="SpeedText" type="Label" parent="UI_Clipboard/Container"]
-auto_translate_mode = 1
 texture_filter = 1
 layout_mode = 0
 offset_left = 73.0
@@ -73,7 +71,6 @@ text = "Speed"
 label_settings = SubResource("LabelSettings_f6wpt")
 
 [node name="Speed" type="Label" parent="UI_Clipboard/Container"]
-auto_translate_mode = 1
 texture_filter = 1
 layout_mode = 0
 offset_left = 76.0
@@ -95,7 +92,6 @@ text = "Parasites"
 label_settings = SubResource("LabelSettings_f6wpt")
 
 [node name="Parasites" type="Label" parent="UI_Clipboard/Container"]
-auto_translate_mode = 1
 texture_filter = 1
 layout_mode = 0
 offset_left = 77.0
@@ -107,7 +103,6 @@ label_settings = SubResource("LabelSettings_f6wpt")
 horizontal_alignment = 2
 
 [node name="ScoreText" type="Label" parent="UI_Clipboard/Container"]
-auto_translate_mode = 1
 texture_filter = 1
 layout_mode = 0
 offset_left = -416.0
@@ -118,7 +113,6 @@ text = "Score"
 label_settings = SubResource("LabelSettings_f6wpt")
 
 [node name="Score" type="Label" parent="UI_Clipboard/Container"]
-auto_translate_mode = 1
 texture_filter = 1
 layout_mode = 0
 offset_left = -381.0
@@ -128,3 +122,9 @@ offset_bottom = -127.0
 text = "0"
 label_settings = SubResource("LabelSettings_f6wpt")
 horizontal_alignment = 2
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="GameMusic" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("5_ptbe0")
+bus = &"Music"

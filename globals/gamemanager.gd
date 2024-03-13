@@ -14,6 +14,7 @@ func _process(_delta: float) -> void:
 func calculate_score(parasites_cleared : int) -> int:
 	var score_multiplier : int = 1
 	var base_values : Dictionary = {
+		0:0,
 		1:100,
 		2:200,
 		3:400,
