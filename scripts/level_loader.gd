@@ -9,14 +9,13 @@ var level_index : int = 0 # Start with level 1
 func _ready() -> void:
 	count_available_levels()
 	load_levels()
-	start_level(level_index) # Start with the first level
-	connect("line_cleared", Callable(self, "_on_line_cleared"))
+	start_level() # Start with the first level
 
-func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("debug_next_level"):
 		load_next_level()
 
-func start_level(level_index : int):
+func start_level():
 	if current_level_instance:
 		remove_child(current_level_instance)
 		current_level_instance.queue_free()
@@ -27,14 +26,16 @@ func start_level(level_index : int):
 	new_level_instance.global_position = gameboard_loc
 	add_child(new_level_instance)
 	current_level_instance = new_level_instance
+	Grid.update_parasite_count()
 
 func load_next_level():
+	Grid._initialize_grid()
 	level_index += 1
 	if level_index >= loaded_levels.size():
 		print("No more levels.")
 		return # TODO handle finishing the game here. load a you win maybe.
 
-	start_level(level_index)
+	start_level()
 
 func count_available_levels():
 	var dir = DirAccess.open("res://levels")
@@ -61,4 +62,5 @@ func load_levels():
 # signals
 
 func _on_level_complete() -> void:
-	load_next_level()
+
+	load_next_level() # here is where we could load the level complete UI

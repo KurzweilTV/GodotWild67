@@ -7,6 +7,7 @@
 script = ExtResource("1_a1t5j")
 
 [node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.187176, 0.187176, 0.187176, 1)
 texture_filter = 1
 texture = ExtResource("1_kr8x1")
 centered = false
@@ -15,3 +16,6 @@ metadata/_edit_lock_ = true
 [node name="LevelLoader" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(256, 129)
+
+[node name="SpawnLoc" type="Marker2D" parent="."]
+position = Vector2(496, 96)

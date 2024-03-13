@@ -3,28 +3,28 @@ class_name Gameboard
 
 signal level_complete
 
-@onready var label: Label = $Label
+@onready var label: Label = $DebugLabel
 
 var active_pieces : int
 var active_parasites : int = 0
 var capsule_scene = preload("res://scenes/capsule.tscn")
-var dummy_parasite_scene = preload("res://scenes/DummyParasite.tscn")
-var pellet_scene = preload("res://scenes/Pellet.tscn")
+var dummy_parasite_scene = preload("res://scenes/dummyparasite.tscn")
+var pellet_scene = preload("res://scenes/pellet.tscn")
 var spawn_point_1 = Grid.grid_to_position(Vector2(3, 0))
 var spawn_point_2 = Grid.grid_to_position(Vector2(4, 0))
 var parasite_count : int = 0
 
 
 func _ready() -> void:
-	spawn_piece()
 	Grid.connect("line_cleared", Callable(self, "_on_line_cleared"))
+	spawn_piece()
 	spawn_parasites()
 
 func _process(_delta: float) -> void:
 	spawn_parasites()
 	spawn_pellets()
 	parasite_count = Grid.update_parasite_count()
-	label.text = "Parasite count: " + str(parasite_count)
+	label.text = "Parasites: " + str(parasite_count)
 	if parasite_count == 0:
 		emit_signal("level_complete")
 
@@ -74,4 +74,3 @@ func _on_line_cleared() -> void:
 
 func _on_piece_locked() -> void:
 	$Sounds/lock_sound.play()
-

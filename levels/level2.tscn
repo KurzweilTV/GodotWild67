@@ -6,26 +6,39 @@
 [node name="Gameboard" instance=ExtResource("1_y2ufb")]
 
 [node name="Parasite2" parent="." index="2" instance=ExtResource("2_tdi87")]
-position = Vector2(96, 176)
+position = Vector2(80, 192)
 
 [node name="Parasite8" parent="." index="3" instance=ExtResource("2_tdi87")]
-position = Vector2(112, 208)
+position = Vector2(96, 240)
 
 [node name="Parasite9" parent="." index="4" instance=ExtResource("2_tdi87")]
-position = Vector2(80, 144)
+position = Vector2(32, 128)
 virus_color = "Random"
 
-[node name="Parasite3" parent="." index="5" instance=ExtResource("2_tdi87")]
-position = Vector2(16, 160)
+[node name="Parasite10" parent="." index="5" instance=ExtResource("2_tdi87")]
+position = Vector2(112, 128)
+virus_color = "Random"
 
-[node name="Parasite4" parent="." index="6" instance=ExtResource("2_tdi87")]
-position = Vector2(112, 160)
+[node name="Parasite3" parent="." index="6" instance=ExtResource("2_tdi87")]
+position = Vector2(16, 192)
 
-[node name="Parasite5" parent="." index="7" instance=ExtResource("2_tdi87")]
-position = Vector2(80, 224)
+[node name="Parasite4" parent="." index="7" instance=ExtResource("2_tdi87")]
+position = Vector2(64, 144)
 
-[node name="Parasite6" parent="." index="8" instance=ExtResource("2_tdi87")]
+[node name="Parasite5" parent="." index="8" instance=ExtResource("2_tdi87")]
+position = Vector2(112, 240)
+
+[node name="Parasite6" parent="." index="9" instance=ExtResource("2_tdi87")]
 position = Vector2(16, 224)
 
-[node name="Parasite7" parent="." index="9" instance=ExtResource("2_tdi87")]
-position = Vector2(16, 224)
+[node name="Parasite7" parent="." index="10" instance=ExtResource("2_tdi87")]
+position = Vector2(0, 240)
+
+[node name="Parasite12" parent="." index="11" instance=ExtResource("2_tdi87")]
+position = Vector2(0, 80)
+
+[node name="Parasite17" parent="." index="12" instance=ExtResource("2_tdi87")]
+position = Vector2(112, 208)
+
+[node name="Parasite14" parent="." index="13" instance=ExtResource("2_tdi87")]
+position = Vector2(96, 80)

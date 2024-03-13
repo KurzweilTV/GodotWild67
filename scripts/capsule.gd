@@ -36,7 +36,9 @@ func _input(event: InputEvent) -> void:  # player input events
 	if event.is_action_pressed("slam"):
 		move_down()
 	if event.is_action_pressed("rotate"):
-		rotate_ccw()
+		rotate_piece("ccw")
+	if event.is_action_pressed("rotate_cw"): # to potentially rotate the other direction
+		rotate_piece("cw") # this is more annoying to implement than expected
 
 func _process(_delta: float) -> void:
 	$DebugLabel.text = str(piece_type.values())
@@ -82,7 +84,7 @@ func align_with_grid():
 	position.y = floor(position.y / 16) * 16
 	pair_capsule.position.y = floor(pair_capsule.position.y / 16) * 16
 
-func rotate_ccw() -> void:
+func rotate_piece(direction) -> void:
 	var rotations: Dictionary = {
 		1: Vector2(-16, -16),
 		2: Vector2(-16, 16),
@@ -91,7 +93,7 @@ func rotate_ccw() -> void:
 	}
 	update_tick_speed()
 	# Rotate the piece
-	if will_rotate:
+	if will_rotate and direction == "ccw":
 		current_cycle += 1
 		if current_cycle > 4:
 			current_cycle = 1
@@ -100,6 +102,7 @@ func rotate_ccw() -> void:
 		$Sounds/rotate_sound.play()
 		nudge_towards_center() # Adjust if needed
 		update_tick_speed()
+
 
 #func animate_rotation(rotation_offset: Vector2) -> void:
 	#var final_position = position + rotation_offset
@@ -125,9 +128,9 @@ func nudge_towards_center() -> void:
 			2:
 				nudge_direction.x = 1  # Nudge right
 			3: #HACK This is bad and I hate it.
-				rotate_ccw()
-				rotate_ccw()
-				rotate_ccw()
+				rotate_piece("ccw")
+				rotate_piece("ccw")
+				rotate_piece("ccw")
 				lock_pieces()
 				return
 			4:
@@ -146,9 +149,12 @@ func nudge_towards_center() -> void:
 			pair_capsule.position.y += nudge_direction.y * 16
 
 func lock_pieces():
+	var piece1_loc = Grid.position_to_grid(position)
+	var piece2_loc = Grid.position_to_grid(pair_capsule.position)
+
 	emit_signal("piece_locked")
-	Grid.set_cell_occupied(Grid.position_to_grid(position), piece_type)
-	Grid.set_cell_occupied(Grid.position_to_grid(pair_capsule.position), pair_capsule.piece_type)
+	Grid.set_cell_occupied(piece1_loc, piece_type)
+	Grid.set_cell_occupied(piece2_loc, pair_capsule.piece_type)
 	is_active_piece = false
 	pair_capsule.is_active_piece = false
 	Grid.find_and_clear_matches()
