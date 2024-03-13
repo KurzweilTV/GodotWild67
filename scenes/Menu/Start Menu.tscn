@@ -1,10 +1,10 @@
 [gd_scene load_steps=14 format=3 uid="uid://b2km4da3qmsw8"]
 
 [ext_resource type="Script" path="res://Scripts/start_menu_buttons.gd" id="1_bnwbo"]
-[ext_resource type="Texture2D" uid="uid://bgk8qw28tixqy" path="res://art/ui/Dr.Parasite Menu.png" id="2_7we0a"]
-[ext_resource type="Texture2D" uid="uid://voxnabxnen5i" path="res://art/ui/Dr.Parasite Start button.png" id="3_hp5wq"]
-[ext_resource type="Texture2D" uid="uid://b5uuajfjnep8r" path="res://art/ui/Dr.Parasite Options Button.png" id="4_o64wd"]
-[ext_resource type="Texture2D" uid="uid://bddsbgosqdtrs" path="res://art/ui/Dr.Parasite Quit button.png" id="5_sip3t"]
+[ext_resource type="Texture2D" uid="uid://bxcecj2wyc3qs" path="res://art/ui/Dr.Parasite Menu.png" id="2_7we0a"]
+[ext_resource type="Texture2D" uid="uid://bh6mrnajplgdb" path="res://art/ui/Dr.Parasite Start button.png" id="3_hp5wq"]
+[ext_resource type="Texture2D" uid="uid://bkeewqe2ni1oe" path="res://art/ui/Dr.Parasite Options Button.png" id="4_o64wd"]
+[ext_resource type="Texture2D" uid="uid://dio0p55t8svn2" path="res://art/ui/Dr.Parasite Quit button.png" id="5_sip3t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_savut"]
 bg_color = Color(0.94902, 0.839216, 0.305882, 1)

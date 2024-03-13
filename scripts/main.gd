@@ -8,14 +8,24 @@ extends Node2D
 @onready var gameboard_loc = $LevelLoader.global_position
 
 var available_levels : Array = []
-var loaded_levels : Array = []
 var current_level_instance = null
 var level_index : int = 0 # Start with level 1
+
+var loaded_levels = [
+		preload("res://levels/level1.tscn"),
+		preload("res://levels/level2.tscn"),
+		preload("res://levels/level3.tscn"),
+		#preload("res://levels/level4.tscn"),
+		#preload("res://levels/level5.tscn"),
+		#preload("res://levels/level6.tscn"),
+		#preload("res://levels/level7.tscn"),
+		#preload("res://levels/level8.tscn"),
+		#preload("res://levels/level9.tscn")
+	]
 
 func _ready() -> void:
 	$Sounds/GameMusic.play()
 	count_available_levels()
-	load_levels()
 	start_level() # Start with the first level
 	update_ui()
 
@@ -25,6 +35,12 @@ func _process(_delta: float) -> void:
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("debug_next_level"):
 		load_next_level()
+
+func direct_load_test():
+	var level1_scene = preload("res://levels/level1.tscn")
+	var level = level1_scene.instantiate()
+	level.global_position = gameboard_loc
+	add_child(level)
 
 func start_level():
 	if current_level_instance:
@@ -61,15 +77,6 @@ func count_available_levels():
 		dir.list_dir_end()
 	else:
 		printerr("Failed to access levels directory.")
-
-func load_levels():
-	for i in range(available_levels.size()):
-		var level_path = "res://levels/level%d.tscn" % (i + 1)
-		var level = load(level_path)
-		if level:
-			loaded_levels.append(level)
-		else:
-			printerr("Failed to load level at path: %s" % level_path)
 
 # UI Updates
 func update_ui() -> void:
