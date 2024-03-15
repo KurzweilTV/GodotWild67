@@ -24,7 +24,7 @@ var loaded_levels = [
 	]
 
 func _ready() -> void:
-	$Sounds/GameMusic.play()
+	MusicPlayer.play_game_music()
 	count_available_levels()
 	start_level() # Start with the first level
 	update_ui()
@@ -35,12 +35,6 @@ func _process(_delta: float) -> void:
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("debug_next_level"):
 		load_next_level()
-
-func direct_load_test():
-	var level1_scene = preload("res://levels/level1.tscn")
-	var level = level1_scene.instantiate()
-	level.global_position = gameboard_loc
-	add_child(level)
 
 func start_level():
 	if current_level_instance:
@@ -93,3 +87,6 @@ func update_ui() -> void:
 # signals
 func _on_level_complete() -> void:
 	load_next_level() # here is where we could load the level complete UI
+
+func _on_gameover() -> void:
+	print("GameOver!")

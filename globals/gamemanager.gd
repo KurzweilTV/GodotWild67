@@ -12,6 +12,7 @@ func _process(_delta: float) -> void:
 	Grid.update_parasite_count()
 
 func calculate_score(parasites_cleared : int) -> int:
+	if parasites_cleared < 0: parasites_cleared = 0
 	var score_multiplier : int = 1
 	var base_values : Dictionary = {
 		0:0,
@@ -20,7 +21,7 @@ func calculate_score(parasites_cleared : int) -> int:
 		3:400,
 		4:800,
 		5:1600,
-		6:3200
+		6:3200,
 	}
 	if game_level in [1, 2, 3]:
 		score_multiplier = 1

@@ -4,6 +4,7 @@ signal line_cleared
 var grid = []  # Nested array for grid representation
 var grid_size = Vector2(8, 16)  # Store grid dimensions
 
+
 func _ready():
 	_initialize_grid()
 
@@ -76,6 +77,7 @@ func check_every_row():
 				emit_signal("line_cleared")
 				var parasites_killed = original_parasites - GameManager.game_parasites
 				apply_scoring(parasites_killed)
+
 
 # Check and clear matches in every column
 func check_every_column():

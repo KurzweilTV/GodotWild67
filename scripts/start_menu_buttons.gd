@@ -3,6 +3,7 @@ extends Control
 
 
 func _on_start_game_pressed():
+	MusicPlayer.menu_music.stop()
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
 # Button that moves to the options menu

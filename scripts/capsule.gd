@@ -2,6 +2,7 @@ extends Node2D
 
 
 signal piece_locked
+signal gameover
 
 const RIGHT_EDGE : int = 7
 const LEFT_EDGE : int = 0
@@ -161,7 +162,8 @@ func lock_pieces():
 	gameboard.spawn_piece()
 	self.queue_free()
 	pair_capsule.queue_free()
-
+	if Grid.is_cell_occupied(Vector2(3,0)) or Grid.is_cell_occupied(Vector2(4,0)): #Detect GameOver
+		emit_signal("gameover")
 
 # setup functions
 func randomize_piece() -> void:

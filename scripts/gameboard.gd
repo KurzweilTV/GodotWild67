@@ -9,6 +9,7 @@ var active_parasites : int = 0
 var capsule_scene = preload("res://scenes/capsule.tscn")
 var dummy_parasite_scene = preload("res://scenes/dummyparasite.tscn")
 var pellet_scene = preload("res://scenes/pellet.tscn")
+var gameover_scene : PackedScene = preload("res://scenes/game_over.tscn")
 var spawn_point_1 = Grid.grid_to_position(Vector2(3, 0))
 var spawn_point_2 = Grid.grid_to_position(Vector2(4, 0))
 var parasite_count : int = 0
@@ -19,6 +20,7 @@ func _ready() -> void:
 	spawn_piece()
 	spawn_parasites()
 	GameManager.game_parasites = Grid.update_parasite_count()
+	GameManager.game_speed = set_game_speed_string()
 
 func _process(_delta: float) -> void:
 	spawn_parasites()
@@ -29,6 +31,8 @@ func spawn_piece() -> void:
 	var capsule2 = capsule_scene.instantiate()
 	capsule1.connect("piece_locked", Callable(self, "_on_piece_locked"))
 	capsule2.connect("piece_locked", Callable(self, "_on_piece_locked"))
+	capsule1.connect("gameover", Callable(self, "_on_gameover"))
+	capsule2.connect("gameover", Callable(self, "_on_gameover"))
 	capsule1.position = spawn_point_1
 	capsule2.position = spawn_point_2
 
@@ -64,10 +68,31 @@ func spawn_pellets():
 				add_child(pellet)
 				Grid.grid[y][x] = {"pellet": cell["pellet"], "spawned": true, "node": pellet}
 
+func set_game_speed_string() -> String:
+	match GameManager.game_level:
+		1, 2, 3:
+			return "Slow"
+		4, 5, 6:
+			return "Medium"
+		7, 8, 9:
+			return "Fast"
+		_:
+			return "Unknown"  # If we see this, we fucked up.
+
+
 # signal functions
 func _on_line_cleared() -> void:
-	GameManager.game_parasites = Grid.update_parasite_count()
 	$Sounds/clear_sound.play()
+	GameManager.game_parasites = Grid.update_parasite_count()
+	if GameManager.game_parasites == 0:
+		emit_signal("level_complete")
+
+func _on_gameover() -> void:
+	var gameover_instance = gameover_scene.instantiate()
+	add_child(gameover_instance)
+	gameover_instance.global_position = Vector2(320,240)
+	get_tree().paused = true
+	# Play Game Over Sound
 
 func _on_piece_locked() -> void:
 	GameManager.game_parasites = Grid.update_parasite_count()

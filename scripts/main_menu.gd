@@ -1,7 +1,7 @@
 extends Node2D
-#script controls background music
 
-@onready var bgmusic = $AudioStreamPlayer2D
+func _ready() -> void:
+	if !MusicPlayer.menu_music.is_playing():
+		MusicPlayer.play_menu_music()
+	get_tree().paused = false
 
-func _on_audio_stream_player_2d_finished():
-	bgmusic.play()

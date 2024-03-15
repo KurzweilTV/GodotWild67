@@ -4,6 +4,11 @@ extends Control
 @onready var Music_Bus_ID = AudioServer.get_bus_index("Music")
 @onready var SFX_Bus_ID = AudioServer.get_bus_index("SFX")
 
+func _ready() -> void:
+	AudioServer.set_bus_volume_db(Master_Bus_ID, -10)
+	AudioServer.set_bus_volume_db(Music_Bus_ID, -5)
+	AudioServer.set_bus_volume_db(SFX_Bus_ID, -10)
+
 func _on_main_vol_slider_value_changed(value):
 	var db_value = linear_to_db(value)
 	AudioServer.set_bus_volume_db(Master_Bus_ID, db_value)
