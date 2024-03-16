@@ -1,11 +1,34 @@
-[gd_scene load_steps=8 format=3 uid="uid://bc18i1ujy7g3q"]
+[gd_scene load_steps=12 format=3 uid="uid://bc18i1ujy7g3q"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_a1t5j"]
-[ext_resource type="Texture2D" uid="uid://dtqxomo6qws42" path="res://art/background/SolidBG.png" id="1_kr8x1"]
-[ext_resource type="Texture2D" uid="uid://bjksueo4um5jb" path="res://art/ui/Dr.Parasite Clip Board Medium.png" id="3_h7u8f"]
-[ext_resource type="FontFile" uid="uid://jkgmgke4ckjs" path="res://fonts/nokia.ttf" id="4_wxvck"]
-[ext_resource type="Texture2D" uid="uid://cojehewre85r2" path="res://art/ui/Dr.Parasite Clip Board Small.png" id="5_ajw8b"]
-[ext_resource type="AudioStream" uid="uid://n4lxosxkhaoo" path="res://sounds/music/game_music.ogg" id="5_ptbe0"]
+[ext_resource type="Texture2D" uid="uid://dlthatv70ns4h" path="res://art/background/SolidBG.png" id="1_kr8x1"]
+[ext_resource type="Texture2D" uid="uid://dn254n5m17n4g" path="res://art/doctor/game_sprite.png" id="3_d3m4l"]
+[ext_resource type="Texture2D" uid="uid://pei305jjv7uc" path="res://art/ui/Dr.Parasite Clip Board Medium.png" id="3_h7u8f"]
+[ext_resource type="FontFile" uid="uid://cjib3ojdn6nke" path="res://fonts/nokia.ttf" id="4_wxvck"]
+[ext_resource type="Texture2D" uid="uid://bvaqq0hqg76fk" path="res://art/ui/Dr.Parasite Clip Board Small.png" id="5_ajw8b"]
+[ext_resource type="AudioStream" uid="uid://cf8yphku4yol7" path="res://sounds/music/game_music.ogg" id="5_ptbe0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5djk"]
+atlas = ExtResource("3_d3m4l")
+region = Rect2(0, 0, 128, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3cobd"]
+atlas = ExtResource("3_d3m4l")
+region = Rect2(128, 0, 128, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kqcge"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5djk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3cobd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="LabelSettings" id="LabelSettings_f6wpt"]
 font = ExtResource("4_wxvck")
@@ -13,6 +36,7 @@ font_color = Color(0, 0, 0, 1)
 outline_size = 7
 
 [node name="Main" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_a1t5j")
 
 [node name="Background" type="Sprite2D" parent="."]
@@ -21,6 +45,12 @@ texture_filter = 1
 texture = ExtResource("1_kr8x1")
 centered = false
 metadata/_edit_lock_ = true
+
+[node name="Doctor" type="AnimatedSprite2D" parent="."]
+position = Vector2(529, 121)
+sprite_frames = SubResource("SpriteFrames_kqcge")
+autoplay = "default"
+frame_progress = 0.308659
 
 [node name="LevelLoader" type="Marker2D" parent="."]
 unique_name_in_owner = true
@@ -74,7 +104,7 @@ label_settings = SubResource("LabelSettings_f6wpt")
 [node name="Speed" type="Label" parent="UI_Clipboard/Container"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 76.0
+offset_left = 21.0
 offset_top = 71.0
 offset_right = 130.0
 offset_bottom = 94.0

@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bnnl8b75ls4g5"]
 
 [ext_resource type="Script" path="res://scripts/game_over.gd" id="1_8nshg"]
-[ext_resource type="Texture2D" uid="uid://bjksueo4um5jb" path="res://art/ui/Dr.Parasite Clip Board Medium.png" id="1_tps1i"]
-[ext_resource type="FontFile" uid="uid://jkgmgke4ckjs" path="res://fonts/nokia.ttf" id="2_wt738"]
+[ext_resource type="Texture2D" uid="uid://pei305jjv7uc" path="res://art/ui/Dr.Parasite Clip Board Medium.png" id="1_tps1i"]
+[ext_resource type="FontFile" uid="uid://cjib3ojdn6nke" path="res://fonts/nokia.ttf" id="2_wt738"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gtnoh"]
 font = ExtResource("2_wt738")

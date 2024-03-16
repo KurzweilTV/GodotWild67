@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dqy5nf5dtwl5f"]
 
 [ext_resource type="Script" path="res://globals/MusicPlayer.gd" id="1_e4hwj"]
-[ext_resource type="AudioStream" uid="uid://iw24r5uq02al" path="res://sounds/music/music2.ogg" id="2_cu3p0"]
-[ext_resource type="AudioStream" uid="uid://n4lxosxkhaoo" path="res://sounds/music/game_music.ogg" id="3_lm6qv"]
+[ext_resource type="AudioStream" uid="uid://pet1yxnwi0tt" path="res://sounds/music/music2.ogg" id="2_cu3p0"]
+[ext_resource type="AudioStream" uid="uid://cf8yphku4yol7" path="res://sounds/music/game_music.ogg" id="3_lm6qv"]
 
 [node name="MusicPlayer" type="Node"]
 script = ExtResource("1_e4hwj")

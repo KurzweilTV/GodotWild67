@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://bhp0e1uohy22a"]
 
-[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_j0gr1"]
-[ext_resource type="PackedScene" uid="uid://b2km4da3qmsw8" path="res://scenes/menu/Start Menu.tscn" id="2_x10xv"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_epguv"]
+[ext_resource type="PackedScene" uid="uid://b2km4da3qmsw8" path="res://scenes/menu/start_menu.tscn" id="2_a0qaj"]
 
 [node name="Main Menu" type="Node2D"]
-script = ExtResource("1_j0gr1")
+script = ExtResource("1_epguv")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = -1
@@ -13,7 +13,7 @@ offset_right = 640.0
 offset_bottom = 484.0
 color = Color(0, 0.45098, 0.454902, 1)
 
-[node name="Control" parent="." instance=ExtResource("2_x10xv")]
+[node name="Control" parent="." instance=ExtResource("2_a0qaj")]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0

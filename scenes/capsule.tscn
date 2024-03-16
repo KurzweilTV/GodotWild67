@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://c38xyjdshy0x2"]
 
 [ext_resource type="Script" path="res://scripts/capsule.gd" id="1_ehhrs"]
-[ext_resource type="Texture2D" uid="uid://c8yp34mkw7ssb" path="res://art/capsules/better_pellets.png" id="2_2v12x"]
-[ext_resource type="AudioStream" uid="uid://64tlsjpu6mgs" path="res://sounds/effects/move.mp3" id="3_iqo6n"]
-[ext_resource type="AudioStream" uid="uid://ds18kj5xswglb" path="res://sounds/effects/rotate.mp3" id="4_aex6u"]
-[ext_resource type="AudioStream" uid="uid://cb7bp8wolucnp" path="res://sounds/effects/falling.mp3" id="4_dqomi"]
+[ext_resource type="Texture2D" uid="uid://ck8pl8mu0mlx6" path="res://art/capsules/better_pellets.png" id="2_2v12x"]
+[ext_resource type="AudioStream" uid="uid://ctgbwjw4bp8qs" path="res://sounds/effects/move.mp3" id="3_iqo6n"]
+[ext_resource type="AudioStream" uid="uid://dkmyqe3t5gu3i" path="res://sounds/effects/rotate.mp3" id="4_aex6u"]
+[ext_resource type="AudioStream" uid="uid://byc1eu11sfnk1" path="res://sounds/effects/falling.mp3" id="4_dqomi"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_l4lna"]
 font_size = 7

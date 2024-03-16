@@ -1,0 +1,102 @@
+[gd_scene load_steps=3 format=3 uid="uid://kd7h2km7ihij"]
+
+[ext_resource type="PackedScene" uid="uid://b7ibtndownoqf" path="res://scenes/gameboard.tscn" id="1_gwjox"]
+[ext_resource type="PackedScene" uid="uid://b6ldcg633admo" path="res://scenes/parasite.tscn" id="2_maaxj"]
+
+[node name="Gameboard" instance=ExtResource("1_gwjox")]
+
+[node name="Parasite" parent="." index="3" instance=ExtResource("2_maaxj")]
+position = Vector2(16, 240)
+
+[node name="Parasite2" parent="." index="4" instance=ExtResource("2_maaxj")]
+position = Vector2(0, 224)
+
+[node name="Parasite3" parent="." index="5" instance=ExtResource("2_maaxj")]
+position = Vector2(16, 208)
+
+[node name="Parasite4" parent="." index="6" instance=ExtResource("2_maaxj")]
+position = Vector2(0, 192)
+
+[node name="Parasite5" parent="." index="7" instance=ExtResource("2_maaxj")]
+position = Vector2(16, 224)
+
+[node name="Parasite6" parent="." index="8" instance=ExtResource("2_maaxj")]
+position = Vector2(32, 224)
+
+[node name="Parasite7" parent="." index="9" instance=ExtResource("2_maaxj")]
+position = Vector2(48, 224)
+
+[node name="Parasite8" parent="." index="10" instance=ExtResource("2_maaxj")]
+position = Vector2(64, 208)
+
+[node name="Parasite9" parent="." index="11" instance=ExtResource("2_maaxj")]
+position = Vector2(96, 224)
+
+[node name="Parasite10" parent="." index="12" instance=ExtResource("2_maaxj")]
+position = Vector2(112, 208)
+
+[node name="Parasite11" parent="." index="13" instance=ExtResource("2_maaxj")]
+position = Vector2(112, 240)
+
+[node name="Parasite12" parent="." index="14" instance=ExtResource("2_maaxj")]
+position = Vector2(112, 176)
+
+[node name="Parasite13" parent="." index="15" instance=ExtResource("2_maaxj")]
+position = Vector2(112, 144)
+
+[node name="Parasite14" parent="." index="16" instance=ExtResource("2_maaxj")]
+position = Vector2(96, 144)
+
+[node name="Parasite15" parent="." index="17" instance=ExtResource("2_maaxj")]
+position = Vector2(80, 160)
+
+[node name="Parasite16" parent="." index="18" instance=ExtResource("2_maaxj")]
+position = Vector2(48, 144)
+
+[node name="Parasite17" parent="." index="19" instance=ExtResource("2_maaxj")]
+position = Vector2(16, 160)
+
+[node name="Parasite18" parent="." index="20" instance=ExtResource("2_maaxj")]
+position = Vector2(0, 128)
+
+[node name="Parasite19" parent="." index="21" instance=ExtResource("2_maaxj")]
+position = Vector2(0, 112)
+
+[node name="Parasite20" parent="." index="22" instance=ExtResource("2_maaxj")]
+position = Vector2(16, 96)
+
+[node name="Parasite21" parent="." index="23" instance=ExtResource("2_maaxj")]
+position = Vector2(80, 96)
+
+[node name="Parasite22" parent="." index="24" instance=ExtResource("2_maaxj")]
+position = Vector2(96, 80)
+
+[node name="Parasite23" parent="." index="25" instance=ExtResource("2_maaxj")]
+position = Vector2(48, 80)
+
+[node name="Parasite24" parent="." index="26" instance=ExtResource("2_maaxj")]
+position = Vector2(48, 112)
+
+[node name="Parasite25" parent="." index="27" instance=ExtResource("2_maaxj")]
+position = Vector2(16, 144)
+
+[node name="Parasite26" parent="." index="28" instance=ExtResource("2_maaxj")]
+position = Vector2(64, 176)
+
+[node name="Parasite27" parent="." index="29" instance=ExtResource("2_maaxj")]
+position = Vector2(48, 192)
+
+[node name="Parasite28" parent="." index="30" instance=ExtResource("2_maaxj")]
+position = Vector2(16, 192)
+
+[node name="Parasite29" parent="." index="31" instance=ExtResource("2_maaxj")]
+position = Vector2(96, 192)
+
+[node name="Parasite30" parent="." index="32" instance=ExtResource("2_maaxj")]
+position = Vector2(80, 240)
+
+[node name="Parasite31" parent="." index="33" instance=ExtResource("2_maaxj")]
+position = Vector2(48, 240)
+
+[node name="Parasite32" parent="." index="34" instance=ExtResource("2_maaxj")]
+position = Vector2(32, 176)

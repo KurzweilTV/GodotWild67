@@ -15,12 +15,12 @@ var loaded_levels = [
 		preload("res://levels/level1.tscn"),
 		preload("res://levels/level2.tscn"),
 		preload("res://levels/level3.tscn"),
-		#preload("res://levels/level4.tscn"),
-		#preload("res://levels/level5.tscn"),
-		#preload("res://levels/level6.tscn"),
-		#preload("res://levels/level7.tscn"),
-		#preload("res://levels/level8.tscn"),
-		#preload("res://levels/level9.tscn")
+		preload("res://levels/level4.tscn"),
+		preload("res://levels/level5.tscn"),
+		preload("res://levels/level6.tscn"),
+		preload("res://levels/level7.tscn"),
+		preload("res://levels/level8.tscn"),
+		preload("res://levels/level9.tscn")
 	]
 
 func _ready() -> void:

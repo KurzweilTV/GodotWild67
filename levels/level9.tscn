@@ -1,0 +1,120 @@
+[gd_scene load_steps=3 format=3 uid="uid://qenckkc5v6kh"]
+
+[ext_resource type="PackedScene" uid="uid://b7ibtndownoqf" path="res://scenes/gameboard.tscn" id="1_1dpm1"]
+[ext_resource type="PackedScene" uid="uid://b6ldcg633admo" path="res://scenes/parasite.tscn" id="2_08vm3"]
+
+[node name="Gameboard" instance=ExtResource("1_1dpm1")]
+
+[node name="Parasite" parent="." index="3" instance=ExtResource("2_08vm3")]
+position = Vector2(0, 240)
+
+[node name="Parasite2" parent="." index="4" instance=ExtResource("2_08vm3")]
+position = Vector2(16, 224)
+
+[node name="Parasite3" parent="." index="5" instance=ExtResource("2_08vm3")]
+position = Vector2(32, 240)
+
+[node name="Parasite4" parent="." index="6" instance=ExtResource("2_08vm3")]
+position = Vector2(48, 224)
+
+[node name="Parasite5" parent="." index="7" instance=ExtResource("2_08vm3")]
+position = Vector2(64, 240)
+
+[node name="Parasite6" parent="." index="8" instance=ExtResource("2_08vm3")]
+position = Vector2(80, 224)
+
+[node name="Parasite7" parent="." index="9" instance=ExtResource("2_08vm3")]
+position = Vector2(96, 240)
+
+[node name="Parasite8" parent="." index="10" instance=ExtResource("2_08vm3")]
+position = Vector2(112, 224)
+
+[node name="Parasite9" parent="." index="11" instance=ExtResource("2_08vm3")]
+position = Vector2(96, 208)
+
+[node name="Parasite10" parent="." index="12" instance=ExtResource("2_08vm3")]
+position = Vector2(64, 208)
+
+[node name="Parasite11" parent="." index="13" instance=ExtResource("2_08vm3")]
+position = Vector2(32, 208)
+
+[node name="Parasite12" parent="." index="14" instance=ExtResource("2_08vm3")]
+position = Vector2(0, 208)
+
+[node name="Parasite13" parent="." index="15" instance=ExtResource("2_08vm3")]
+position = Vector2(16, 192)
+
+[node name="Parasite14" parent="." index="16" instance=ExtResource("2_08vm3")]
+position = Vector2(48, 192)
+
+[node name="Parasite15" parent="." index="17" instance=ExtResource("2_08vm3")]
+position = Vector2(80, 192)
+
+[node name="Parasite16" parent="." index="18" instance=ExtResource("2_08vm3")]
+position = Vector2(112, 192)
+
+[node name="Parasite17" parent="." index="19" instance=ExtResource("2_08vm3")]
+position = Vector2(96, 176)
+
+[node name="Parasite18" parent="." index="20" instance=ExtResource("2_08vm3")]
+position = Vector2(64, 176)
+
+[node name="Parasite19" parent="." index="21" instance=ExtResource("2_08vm3")]
+position = Vector2(32, 176)
+
+[node name="Parasite20" parent="." index="22" instance=ExtResource("2_08vm3")]
+position = Vector2(0, 176)
+
+[node name="Parasite21" parent="." index="23" instance=ExtResource("2_08vm3")]
+position = Vector2(0, 176)
+
+[node name="Parasite22" parent="." index="24" instance=ExtResource("2_08vm3")]
+position = Vector2(16, 160)
+
+[node name="Parasite23" parent="." index="25" instance=ExtResource("2_08vm3")]
+position = Vector2(48, 160)
+
+[node name="Parasite24" parent="." index="26" instance=ExtResource("2_08vm3")]
+position = Vector2(80, 160)
+
+[node name="Parasite25" parent="." index="27" instance=ExtResource("2_08vm3")]
+position = Vector2(112, 160)
+
+[node name="Parasite26" parent="." index="28" instance=ExtResource("2_08vm3")]
+position = Vector2(96, 144)
+
+[node name="Parasite27" parent="." index="29" instance=ExtResource("2_08vm3")]
+position = Vector2(64, 144)
+
+[node name="Parasite28" parent="." index="30" instance=ExtResource("2_08vm3")]
+position = Vector2(32, 144)
+
+[node name="Parasite29" parent="." index="31" instance=ExtResource("2_08vm3")]
+position = Vector2(0, 144)
+
+[node name="Parasite30" parent="." index="32" instance=ExtResource("2_08vm3")]
+position = Vector2(16, 128)
+
+[node name="Parasite31" parent="." index="33" instance=ExtResource("2_08vm3")]
+position = Vector2(48, 128)
+
+[node name="Parasite32" parent="." index="34" instance=ExtResource("2_08vm3")]
+position = Vector2(80, 128)
+
+[node name="Parasite33" parent="." index="35" instance=ExtResource("2_08vm3")]
+position = Vector2(80, 128)
+
+[node name="Parasite34" parent="." index="36" instance=ExtResource("2_08vm3")]
+position = Vector2(112, 128)
+
+[node name="Parasite35" parent="." index="37" instance=ExtResource("2_08vm3")]
+position = Vector2(96, 112)
+
+[node name="Parasite36" parent="." index="38" instance=ExtResource("2_08vm3")]
+position = Vector2(64, 112)
+
+[node name="Parasite37" parent="." index="39" instance=ExtResource("2_08vm3")]
+position = Vector2(32, 112)
+
+[node name="Parasite38" parent="." index="40" instance=ExtResource("2_08vm3")]
+position = Vector2(0, 112)
