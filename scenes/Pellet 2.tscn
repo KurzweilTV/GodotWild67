@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhg5yalafs17i"]
+
+[ext_resource type="Texture2D" uid="uid://ck8pl8mu0mlx6" path="res://art/capsules/better_pellets.png" id="1_1h2lk"]
+
+[sub_resource type="GDScript" id="GDScript_hy4px"]
+script/source = "extends Sprite2D
+
+var pellet_color = \"\"
+var piece_type: Dictionary
+
+func _ready() -> void:
+	piece_type = {\"pellet\": pellet_color}
+	match pellet_color:
+		\"red\": frame = 0
+		\"blue\": frame = 1
+		\"yellow\": frame = 2
+	# Set the initial grid position of the pellet as occupied.
+	var start_grid_pos = Grid.position_to_grid(position)
+	Grid.set_cell_occupied(start_grid_pos, piece_type)
+
+func move_down() -> void:
+	var new_position = position + Vector2(0, 16)
+	var new_grid_pos = Grid.position_to_grid(new_position)
+
+	if can_move_to(new_position):
+		var old_grid_pos = Grid.position_to_grid(position)
+		Grid.clear_cell(old_grid_pos.x, old_grid_pos.y)
+		position = new_position
+		Grid.set_cell_occupied(new_grid_pos, piece_type)
+	else:
+		Grid.find_and_clear_matches()
+
+
+func can_move_to(new_position: Vector2) -> bool:
+	var grid_pos = Grid.position_to_grid(new_position)
+	return not Grid.is_cell_occupied(grid_pos)
+
+func _on_ticker_timeout() -> void:
+	move_down()
+"
+
+[node name="Pellet" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_1h2lk")
+centered = false
+hframes = 3
+script = SubResource("GDScript_hy4px")
+
+[node name="Ticker" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="Ticker" to="." method="_on_ticker_timeout"]

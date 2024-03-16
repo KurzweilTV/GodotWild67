@@ -21,6 +21,8 @@ var current_cycle : int = 0
 var piece_type : Dictionary
 
 @onready var ticker: Timer = $Ticker
+@onready var fast_move_timer: Timer = $FastMoveTimer
+
 
 func _ready() -> void:
 	gameboard = get_parent()
@@ -40,6 +42,11 @@ func _input(event: InputEvent) -> void:  # player input events
 		move_right()
 	if event.is_action_pressed("slam"):
 		move_down()
+	if event.is_action_pressed("slam"):
+		fast_move_timer.start()
+	if event.is_action_released("slam"):
+		fast_move_timer.stop()
+		update_tick_speed()
 	if event.is_action_pressed("rotate"):
 		rotate_piece("ccw")
 	if event.is_action_pressed("rotate_cw"): # to potentially rotate the other direction
@@ -75,17 +82,19 @@ func move_right() -> void:
 			pair_capsule.position = pair_new_position
 			$Sounds/move_sound.play()
 
+func _on_FastMoveTimer_timeout() -> void:
+	move_down()  # fast drop
+
 func move_down() -> void:
 	if not is_active_piece:
 		return
-	var new_position = position + Vector2(0, 8)  #HACK Half grid move down
+	var new_position = position + Vector2(0, 8)  # HACK Half grid move down
 	var pair_new_position = pair_capsule.position + Vector2(0, 8)
 
 	if can_move_to(new_position, pair_new_position):
 		position = new_position
 		pair_capsule.position = pair_new_position
 	else:
-		# Before locking, adjust position to align with grid if necessary
 		align_with_grid()
 		lock_pieces()
 

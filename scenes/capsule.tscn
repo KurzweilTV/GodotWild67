@@ -21,6 +21,9 @@ hframes = 3
 [node name="Ticker" type="Timer" parent="."]
 autostart = true
 
+[node name="FastMoveTimer" type="Timer" parent="."]
+wait_time = 0.1
+
 [node name="RotationTimer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
@@ -51,4 +54,5 @@ horizontal_alignment = 1
 vertical_alignment = 2
 
 [connection signal="timeout" from="Ticker" to="." method="_on_ticker_timeout"]
+[connection signal="timeout" from="FastMoveTimer" to="." method="_on_FastMoveTimer_timeout"]
 [connection signal="timeout" from="RotationTimer" to="." method="_on_rotation_timer_timeout"]

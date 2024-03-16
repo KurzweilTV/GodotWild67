@@ -48,21 +48,21 @@ centered = false
 metadata/_edit_lock_ = true
 
 [node name="Doctor" type="AnimatedSprite2D" parent="."]
-position = Vector2(530, 158)
+position = Vector2(526, 94)
 sprite_frames = SubResource("SpriteFrames_kqcge")
 autoplay = "default"
-frame_progress = 0.532578
+frame_progress = 0.467363
 
 [node name="LevelLoader" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(256, 129)
 
 [node name="SpawnLoc" type="Marker2D" parent="."]
-position = Vector2(526, 45)
+position = Vector2(93, 340)
 
 [node name="UI_Clipboard" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(528, 346)
+position = Vector2(528, 288)
 texture = ExtResource("3_h7u8f")
 
 [node name="Container" type="ColorRect" parent="UI_Clipboard"]
@@ -71,6 +71,17 @@ offset_top = -64.0
 offset_right = 64.0
 offset_bottom = 80.0
 color = Color(1, 1, 1, 0)
+
+[node name="NextText" type="Label" parent="UI_Clipboard/Container"]
+z_index = 1
+texture_filter = 1
+layout_mode = 0
+offset_left = -381.0
+offset_top = 90.0
+offset_right = -334.0
+offset_bottom = 113.0
+text = "Next"
+label_settings = SubResource("LabelSettings_f6wpt")
 
 [node name="LevelText" type="Label" parent="UI_Clipboard/Container"]
 texture_filter = 1
@@ -135,39 +146,33 @@ label_settings = SubResource("LabelSettings_f6wpt")
 horizontal_alignment = 2
 
 [node name="ScoreClipboard" type="Sprite2D" parent="UI_Clipboard/Container"]
-position = Vector2(-356, -160)
+position = Vector2(-356, -67)
 texture = ExtResource("5_ajw8b")
 
 [node name="ScoreText" type="Label" parent="UI_Clipboard/Container"]
 texture_filter = 1
 layout_mode = 0
-offset_left = -416.0
-offset_top = -177.0
-offset_right = -324.0
-offset_bottom = -154.0
+offset_left = -406.0
+offset_top = -81.0
+offset_right = -314.0
+offset_bottom = -58.0
 text = "Score"
 label_settings = SubResource("LabelSettings_f6wpt")
 
 [node name="Score" type="Label" parent="UI_Clipboard/Container"]
 texture_filter = 1
 layout_mode = 0
-offset_left = -381.0
-offset_top = -150.0
-offset_right = -327.0
-offset_bottom = -127.0
+offset_left = -371.0
+offset_top = -54.0
+offset_right = -317.0
+offset_bottom = -31.0
 text = "0"
 label_settings = SubResource("LabelSettings_f6wpt")
 horizontal_alignment = 2
 
-[node name="NextText" type="Label" parent="UI_Clipboard/Container"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 7.0
-offset_top = -236.0
-offset_right = 99.0
-offset_bottom = -213.0
-text = "Next"
-label_settings = SubResource("LabelSettings_f6wpt")
+[node name="NextClipboard" type="Sprite2D" parent="UI_Clipboard/Container"]
+position = Vector2(-355, 104)
+texture = ExtResource("5_ajw8b")
 
 [node name="Sounds" type="Node" parent="."]
 
