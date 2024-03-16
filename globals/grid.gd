@@ -3,6 +3,8 @@ extends Node
 signal line_cleared
 var grid = []  # Nested array for grid representation
 var grid_size = Vector2(8, 16)  # Store grid dimensions
+var particle_scene = preload("res://scenes/effects/HealParticle.tscn")
+var parasites_global_positions = []
 
 
 func _ready():
@@ -48,6 +50,7 @@ func find_and_clear_matches():
 # Check and clear matches in every row
 func check_every_row():
 	var original_parasites = GameManager.game_parasites
+
 	for y in range(len(grid)):
 		var current_sequence_length = 1
 		var current_value = null
@@ -111,11 +114,21 @@ func check_every_column():
 			var parasites_killed = original_parasites - GameManager.game_parasites
 			apply_scoring(parasites_killed)
 
+func spawn_particles():
+	for loc in parasites_global_positions:
+		var particle_instance = particle_scene.instantiate()
+		particle_instance.global_position = loc + Vector2(0, 8)
+		add_child(particle_instance)
+		parasites_global_positions.clear()
+
 func clear_cell(x, y):
 	var cell = grid[y][x]
 	if cell != null and typeof(cell) == TYPE_DICTIONARY and "node" in cell:
 		var node = cell["node"]
 		if is_instance_valid(node):
+			if "parasite" in cell:  # Check if it's a parasite
+				parasites_global_positions.append(node.global_position)  # Store the global position
+			spawn_particles()
 			node.queue_free()  # Remove the node from the scene
 	grid[y][x] = null  # Clear the grid cell
 

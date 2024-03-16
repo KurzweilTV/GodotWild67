@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctelmpqwm34wi"]
+
+[ext_resource type="Texture2D" uid="uid://cy0keevxiuukg" path="res://art/effects/heal.png" id="1_sj4rv"]
+[ext_resource type="Script" path="res://scripts/HealParticle.gd" id="2_63ypt"]
+
+[sub_resource type="Curve" id="Curve_2bggh"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.511236, 0.538462), 0.0, 0.0, 0, 0, Vector2(0.994382, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="HealParticle" type="CPUParticles2D"]
+z_index = 10
+z_as_relative = false
+texture_filter = 1
+emitting = false
+amount = 2
+lifetime = 2.5
+one_shot = true
+preprocess = 0.1
+explosiveness = 0.75
+texture = ExtResource("1_sj4rv")
+emission_shape = 1
+emission_sphere_radius = 16.0
+gravity = Vector2(2.08165e-12, -20)
+tangential_accel_min = -32.32
+tangential_accel_max = 30.3
+scale_amount_min = 0.5
+scale_amount_max = 1.5
+scale_amount_curve = SubResource("Curve_2bggh")
+hue_variation_min = -0.2
+hue_variation_max = 0.42
+script = ExtResource("2_63ypt")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

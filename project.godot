@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Godot Wild 67"
+config/name="Dr. Parasite"
 config/version="1.0"
 config/tags=PackedStringArray("gamejam")
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/godot_logos.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 boot_splash/show_image=false
 boot_splash/use_filter=false
