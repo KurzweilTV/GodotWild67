@@ -9,7 +9,9 @@ extends Node2D
 
 var available_levels : Array = []
 var current_level_instance = null
+var level_complete : Node
 var level_index : int = 0 # Start with level 1
+var pause_scene : PackedScene = preload("res://scenes/menu/pause_screen.tscn")
 
 var loaded_levels = [
 		preload("res://levels/level1.tscn"),
@@ -32,9 +34,13 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	update_ui()
 
-func _unhandled_input(_event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("debug_next_level"):
 		load_next_level()
+	if Input.is_action_just_pressed("pause"):
+		var pause_screen = pause_scene.instantiate()
+		add_child(pause_screen)
+		get_tree().paused = true
 
 func start_level():
 	if current_level_instance:
@@ -87,7 +93,9 @@ func update_ui() -> void:
 
 # signals
 func _on_level_complete() -> void:
-	load_next_level() # here is where we could load the level complete UI
+	$Sounds/LevelComplete.play()
+	load_next_level()
+
 
 func _on_gameover() -> void:
 	print("GameOver!")

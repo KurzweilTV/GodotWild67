@@ -29,13 +29,15 @@ autostart = true
 
 [node name="move_sound" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("3_iqo6n")
-volume_db = 1.981
+bus = &"SFX"
 
 [node name="drop_sound" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("4_dqomi")
+bus = &"SFX"
 
 [node name="rotate_sound" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("4_aex6u")
+bus = &"SFX"
 
 [node name="DebugLabel" type="Label" parent="."]
 visible = false

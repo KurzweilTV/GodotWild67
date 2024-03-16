@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://chf7mp5ct5lnf"]
+
+[ext_resource type="Texture2D" uid="uid://pei305jjv7uc" path="res://art/ui/Dr.Parasite Clip Board Medium.png" id="1_2cf5l"]
+[ext_resource type="Script" path="res://scripts/pause_screen.gd" id="1_wdscu"]
+[ext_resource type="FontFile" uid="uid://cjib3ojdn6nke" path="res://fonts/nokia.ttf" id="2_u1k5k"]
+[ext_resource type="AudioStream" uid="uid://bqhk315t3igxm" path="res://sounds/effects/menu_back.mp3" id="4_dargh"]
+[ext_resource type="AudioStream" uid="uid://ctgbwjw4bp8qs" path="res://sounds/effects/move.mp3" id="5_c2hlw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7fb2b"]
+font = ExtResource("2_u1k5k")
+font_color = Color(0, 0, 0, 1)
+outline_size = 7
+
+[node name="PauseScreen" type="Node2D"]
+process_mode = 3
+texture_filter = 1
+script = ExtResource("1_wdscu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_2cf5l")
+
+[node name="LevelText" type="Label" parent="Sprite2D"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.0
+offset_top = -168.0
+offset_right = -45.0
+offset_bottom = -145.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Paused"
+label_settings = SubResource("LabelSettings_7fb2b")
+
+[node name="Resume" type="Button" parent="Sprite2D"]
+offset_left = -42.0
+offset_top = 1.0
+offset_right = 42.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0.678431, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_u1k5k")
+text = "Resume"
+
+[node name="Quit" type="Button" parent="Sprite2D"]
+offset_left = -54.0
+offset_top = 37.0
+offset_right = 54.0
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_u1k5k")
+text = "Quit Game"
+
+[node name="PauseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_dargh")
+pitch_scale = 0.8
+
+[node name="HoverSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_c2hlw")
+pitch_scale = 0.8
+
+[connection signal="mouse_entered" from="Sprite2D/Resume" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="Sprite2D/Resume" to="." method="_on_resume_pressed"]
+[connection signal="mouse_entered" from="Sprite2D/Quit" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="Sprite2D/Quit" to="." method="_on_quit_pressed"]

@@ -156,7 +156,7 @@ func _on_gameover() -> void:
 	add_child(gameover_instance)
 	gameover_instance.global_position = Vector2(320,240)
 	get_tree().paused = true
-	# Play Game Over Sound
+	$Sounds/gameover_sound.play()
 
 func _on_piece_locked() -> void:
 	GameManager.game_parasites = Grid.update_parasite_count()

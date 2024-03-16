@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://8od15w24q4pc"]
+
+[ext_resource type="Script" path="res://scripts/level_complete.gd" id="1_8ticd"]
+[ext_resource type="Texture2D" uid="uid://bvaqq0hqg76fk" path="res://art/ui/Dr.Parasite Clip Board Small.png" id="1_nb7lb"]
+[ext_resource type="FontFile" uid="uid://cjib3ojdn6nke" path="res://fonts/nokia.ttf" id="2_5028k"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g2afn"]
+font = ExtResource("2_5028k")
+font_size = 13
+font_color = Color(0, 0, 0, 1)
+outline_size = 5
+
+[node name="LevelComplete" type="Node2D"]
+process_mode = 2
+texture_filter = 1
+script = ExtResource("1_8ticd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nb7lb")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.0
+offset_top = -16.0
+offset_right = 64.0
+offset_bottom = 7.0
+grow_horizontal = 2
+text = "Level Complete!"
+label_settings = SubResource("LabelSettings_g2afn")
+
+[node name="Label" type="Label" parent="Label"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -65.5
+offset_top = 22.0
+offset_right = 61.5
+offset_bottom = 59.0
+grow_horizontal = 2
+text = "Press any key 
+to continue"
+label_settings = SubResource("LabelSettings_g2afn")
+horizontal_alignment = 1

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b7ibtndownoqf"]
+[gd_scene load_steps=8 format=3 uid="uid://b7ibtndownoqf"]
 
 [ext_resource type="Script" path="res://scripts/gameboard.gd" id="1_mxnh0"]
 [ext_resource type="Texture2D" uid="uid://5qcawbfuda24" path="res://art/background/NewGameBoard.png" id="2_x78yu"]
 [ext_resource type="AudioStream" uid="uid://clndy6ul3otsa" path="res://sounds/effects/destroyed.mp3" id="4_qb7vh"]
 [ext_resource type="AudioStream" uid="uid://byc1eu11sfnk1" path="res://sounds/effects/falling.mp3" id="4_whhg2"]
+[ext_resource type="AudioStream" uid="uid://tefrmo5gk4qt" path="res://sounds/effects/game_over.mp3" id="5_cqsue"]
 [ext_resource type="FontFile" uid="uid://cjib3ojdn6nke" path="res://fonts/nokia.ttf" id="5_cykwa"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_d76ag"]
@@ -29,6 +30,11 @@ volume_db = 4.0
 
 [node name="lock_sound" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("4_whhg2")
+
+[node name="gameover_sound" type="AudioStreamPlayer2D" parent="Sounds"]
+process_mode = 3
+stream = ExtResource("5_cqsue")
+bus = &"SFX"
 
 [node name="DebugLabel" type="Label" parent="."]
 visible = false
