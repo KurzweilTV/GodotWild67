@@ -46,6 +46,7 @@ func start_level():
 	new_level_instance.connect("level_complete", Callable(self, "_on_level_complete"))
 	new_level_instance.global_position = gameboard_loc
 	add_child(new_level_instance)
+	new_level_instance.next_piece_loc = $SpawnLoc
 	current_level_instance = new_level_instance
 
 func load_next_level():

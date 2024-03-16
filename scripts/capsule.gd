@@ -50,6 +50,8 @@ func can_move_to(new_position: Vector2, pair_new_position: Vector2) -> bool:
 	return not Grid.is_cell_occupied(grid_pos) and not Grid.is_cell_occupied(pair_grid_pos)
 
 func move_left() -> void:
+	if !is_active_piece:
+		return
 	if is_leader:
 		var new_position = position + Vector2(-16, 0)
 		var pair_new_position = pair_capsule.position + Vector2(-16, 0)
@@ -59,6 +61,8 @@ func move_left() -> void:
 			$Sounds/move_sound.play()
 
 func move_right() -> void:
+	if !is_active_piece:
+		return
 	if is_leader:
 		var new_position = position + Vector2(16, 0)
 		var pair_new_position = pair_capsule.position + Vector2(16, 0)
@@ -82,6 +86,8 @@ func move_down() -> void:
 		lock_pieces()
 
 func align_with_grid():
+	if !is_active_piece:
+		return
 	position.y = floor(position.y / 16) * 16
 	pair_capsule.position.y = floor(pair_capsule.position.y / 16) * 16
 
@@ -112,6 +118,8 @@ func rotate_piece(direction) -> void:
 	#tween.connect("finished", Callable(self, "_on_tween_finished"))
 
 func nudge_towards_center() -> void:
+	if !is_active_piece:
+		return
 	var nudge_direction = Vector2.ZERO
 	var grid_pos = Grid.position_to_grid(position)
 
@@ -150,6 +158,8 @@ func nudge_towards_center() -> void:
 			pair_capsule.position.y += nudge_direction.y * 16
 
 func lock_pieces():
+	if !is_active_piece:
+		return
 	var piece1_loc = Grid.position_to_grid(position)
 	var piece2_loc = Grid.position_to_grid(pair_capsule.position)
 

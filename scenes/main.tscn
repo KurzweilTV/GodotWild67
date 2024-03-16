@@ -50,14 +50,14 @@ metadata/_edit_lock_ = true
 position = Vector2(529, 121)
 sprite_frames = SubResource("SpriteFrames_kqcge")
 autoplay = "default"
-frame_progress = 0.308659
+frame_progress = 0.532578
 
 [node name="LevelLoader" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(256, 129)
 
 [node name="SpawnLoc" type="Marker2D" parent="."]
-position = Vector2(496, 96)
+position = Vector2(532, 22)
 
 [node name="UI_Clipboard" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -157,6 +157,16 @@ offset_bottom = -127.0
 text = "0"
 label_settings = SubResource("LabelSettings_f6wpt")
 horizontal_alignment = 2
+
+[node name="NextText" type="Label" parent="UI_Clipboard/Container"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 7.0
+offset_top = -236.0
+offset_right = 99.0
+offset_bottom = -213.0
+text = "Next"
+label_settings = SubResource("LabelSettings_f6wpt")
 
 [node name="Sounds" type="Node" parent="."]
 
