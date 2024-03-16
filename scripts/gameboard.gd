@@ -22,6 +22,7 @@ var capsule4
 
 func _ready() -> void:
 	Grid.connect("line_cleared", Callable(self, "_on_line_cleared"))
+	clear_capsules()
 	spawn_piece()
 	spawn_parasites()
 	GameManager.game_parasites = Grid.update_parasite_count()
@@ -32,6 +33,29 @@ func _process(_delta: float) -> void:
 	spawn_parasites()
 	spawn_pellets()
 
+func spawn_piece() -> void:
+	capsule1 = capsule_scene.instantiate()
+	capsule2 = capsule_scene.instantiate()
+	capsule1.piece_type = GameManager.next_1
+	capsule2.piece_type = GameManager.next_2
+	capsule1.name = "Piece1"
+	capsule2.name = "Piece2"
+	capsule1.position = spawn_point_1
+	capsule2.position = spawn_point_2
+	add_child(capsule1)
+	add_child(capsule2)
+
+	capsule1.connect("piece_locked", Callable(self, "_on_piece_locked"))
+	capsule2.connect("piece_locked", Callable(self, "_on_piece_locked"))
+	capsule1.connect("gameover", Callable(self, "_on_gameover"))
+	capsule2.connect("gameover", Callable(self, "_on_gameover"))
+
+	capsule1.set_pair_capsule(capsule2)
+	capsule1.is_leader = true
+	capsule2.will_rotate = true
+
+	spawn_next()
+
 func spawn_next() -> void:
 	if capsule3:
 		capsule3.queue_free()
@@ -40,16 +64,20 @@ func spawn_next() -> void:
 
 	capsule3 = capsule_scene.instantiate()
 	capsule4 = capsule_scene.instantiate()
+	add_child(capsule3)
+	add_child(capsule4)
+
 	capsule3.connect("piece_locked", Callable(self, "_on_piece_locked"))
 	capsule4.connect("piece_locked", Callable(self, "_on_piece_locked"))
 	capsule3.connect("gameover", Callable(self, "_on_gameover"))
 	capsule4.connect("gameover", Callable(self, "_on_gameover"))
-	add_child(capsule3)
-	add_child(capsule4)
+
 	capsule3.is_active_piece = false
 	capsule4.is_active_piece = false
 	capsule3.name = "Next1"
 	capsule4.name = "Next2"
+	GameManager.next_1 = capsule3.piece_type
+	GameManager.next_2 = capsule4.piece_type
 
 	retry_set_position()
 
@@ -61,30 +89,23 @@ func retry_set_position() -> void:
 		capsule3.global_position = next_piece_loc.global_position
 		capsule4.global_position = next_piece_loc.global_position + Vector2(16, 0)
 
+func retry_set_color() -> void:
+	if not capsule3.piece_type and get_tree():
+		await get_tree().create_timer(0.1).timeout # Wait for 0.1 seconds before retrying
+		retry_set_color() # Retry
+	else:
+		capsule1.piece_type = capsule3.piece_type
+		capsule2.piece_type = capsule4.piece_type
 
-func spawn_piece() -> void:
-	spawn_next()
-	capsule1 = capsule_scene.instantiate()
-	capsule2 = capsule_scene.instantiate()
-	capsule1.name = "Piece1"
-	capsule2.name = "Piece2"
-	capsule1.connect("piece_locked", Callable(self, "_on_piece_locked"))
-	capsule2.connect("piece_locked", Callable(self, "_on_piece_locked"))
-	capsule1.connect("gameover", Callable(self, "_on_gameover"))
-	capsule2.connect("gameover", Callable(self, "_on_gameover"))
-	capsule1.position = spawn_point_1
-	capsule2.position = spawn_point_2
-	capsule1.piece_type = capsule3.piece_type
-	capsule2.piece_type = capsule4.piece_type
-
-
-	capsule1.set_pair_capsule(capsule2)
-	capsule1.is_leader = true
-	capsule2.will_rotate = true
-
-	add_child(capsule1)
-	add_child(capsule2)
-
+func clear_capsules():
+	if capsule1:
+		capsule1.queue_free()
+	if capsule2:
+		capsule2.queue_free()
+	if capsule3:
+		capsule3.queue_free()
+	if capsule4:
+		capsule4.queue_free()
 
 # iterate on teh grid
 

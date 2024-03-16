@@ -25,7 +25,11 @@ var piece_type : Dictionary
 func _ready() -> void:
 	gameboard = get_parent()
 	update_tick_speed()
-	randomize_piece()
+
+	if !piece_type:
+		randomize_piece()
+
+	update_frame()
 
 func _input(event: InputEvent) -> void:  # player input events
 	if not is_active_piece:
@@ -186,6 +190,13 @@ func randomize_piece() -> void:
 		0: piece_type = {"pellet":"red"}
 		1: piece_type = {"pellet":"blue"}
 		2: piece_type = {"pellet":"yellow"}
+
+func update_frame() -> void:
+	var sprite = $Sprite
+	match piece_type:
+		{"pellet":"red"}: sprite.frame = 0
+		{"pellet":"blue"}: sprite.frame = 1
+		{"pellet":"yellow"}: sprite.frame = 2
 
 func set_pair_capsule(other_capsule) -> void:
 	pair_capsule = other_capsule

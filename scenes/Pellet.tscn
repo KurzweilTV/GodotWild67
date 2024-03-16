@@ -1,10 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://bhg5yalafs17i"]
 
-[ext_resource type="Texture2D" uid="uid://cv0n0pmuqmsgg" path="res://art/capsules/better_pellets.png" id="1_1h2lk"]
+[ext_resource type="Texture2D" uid="uid://ck8pl8mu0mlx6" path="res://art/capsules/better_pellets.png" id="1_1h2lk"]
 
 [sub_resource type="GDScript" id="GDScript_hy4px"]
-script/source = "
-extends Sprite2D
+script/source = "extends Sprite2D
 
 var pellet_color = \"\"
 var piece_type: Dictionary

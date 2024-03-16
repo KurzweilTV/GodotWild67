@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://b7ibtndownoqf"]
 
 [ext_resource type="Script" path="res://scripts/gameboard.gd" id="1_mxnh0"]
-[ext_resource type="Texture2D" uid="uid://q6aw8infpwho" path="res://art/background/NewGameBoard.png" id="2_x78yu"]
-[ext_resource type="AudioStream" uid="uid://cun7ywvmvt5l1" path="res://sounds/effects/destroyed.mp3" id="4_qb7vh"]
-[ext_resource type="AudioStream" uid="uid://c7oamd25s3sm8" path="res://sounds/effects/falling.mp3" id="4_whhg2"]
-[ext_resource type="FontFile" uid="uid://dubv7nt74lhod" path="res://fonts/nokia.ttf" id="5_cykwa"]
+[ext_resource type="Texture2D" uid="uid://5qcawbfuda24" path="res://art/background/NewGameBoard.png" id="2_x78yu"]
+[ext_resource type="AudioStream" uid="uid://clndy6ul3otsa" path="res://sounds/effects/destroyed.mp3" id="4_qb7vh"]
+[ext_resource type="AudioStream" uid="uid://byc1eu11sfnk1" path="res://sounds/effects/falling.mp3" id="4_whhg2"]
+[ext_resource type="FontFile" uid="uid://cjib3ojdn6nke" path="res://fonts/nokia.ttf" id="5_cykwa"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_d76ag"]
 font = ExtResource("5_cykwa")

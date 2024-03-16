@@ -1,13 +1,13 @@
 [gd_scene load_steps=21 format=3 uid="uid://b2km4da3qmsw8"]
 
 [ext_resource type="Script" path="res://scripts/start_menu_buttons.gd" id="1_8f5s8"]
-[ext_resource type="Texture2D" uid="uid://6vb7qdx5g3tn" path="res://art/ui/Dr.Parasite Menu.png" id="2_tts5n"]
-[ext_resource type="Texture2D" uid="uid://brh58h25qh2tx" path="res://art/ui/Dr.Parasite Start button.png" id="3_6qqeo"]
-[ext_resource type="Texture2D" uid="uid://cijmewb8cxrod" path="res://art/ui/Dr.Parasite Options Button.png" id="4_6qe66"]
-[ext_resource type="Texture2D" uid="uid://dxgtcl6ohj1n0" path="res://art/ui/Dr.Parasite Quit button.png" id="5_160ji"]
-[ext_resource type="AudioStream" uid="uid://dsmrcdvcror7g" path="res://sounds/effects/menu_forward.mp3" id="6_2n16a"]
-[ext_resource type="AudioStream" uid="uid://dh67dlsey7her" path="res://sounds/effects/menu_back.mp3" id="7_ag4ub"]
-[ext_resource type="Texture2D" uid="uid://cx6h8uh0wx15s" path="res://art/doctor/menu_sprite.png" id="8_a6ktx"]
+[ext_resource type="Texture2D" uid="uid://uo721jl16lof" path="res://art/ui/Dr.Parasite Menu.png" id="2_tts5n"]
+[ext_resource type="Texture2D" uid="uid://col0bueakim4u" path="res://art/ui/Dr.Parasite Start button.png" id="3_6qqeo"]
+[ext_resource type="Texture2D" uid="uid://cfcqpvqtrx7pr" path="res://art/ui/Dr.Parasite Options Button.png" id="4_6qe66"]
+[ext_resource type="Texture2D" uid="uid://f5hto1vt5ast" path="res://art/ui/Dr.Parasite Quit button.png" id="5_160ji"]
+[ext_resource type="AudioStream" uid="uid://bx8f8ufxx3p7n" path="res://sounds/effects/menu_forward.mp3" id="6_2n16a"]
+[ext_resource type="AudioStream" uid="uid://bqhk315t3igxm" path="res://sounds/effects/menu_back.mp3" id="7_ag4ub"]
+[ext_resource type="Texture2D" uid="uid://cxk6s183qv7di" path="res://art/doctor/menu_sprite.png" id="8_a6ktx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_savut"]
 bg_color = Color(0.94902, 0.839216, 0.305882, 1)

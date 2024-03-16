@@ -8,8 +8,15 @@ var game_score : int = 0
 var game_speed : String
 var game_parasites : int
 
+var next_1 : Dictionary
+var next_2 : Dictionary
+
 func _process(_delta: float) -> void:
 	Grid.update_parasite_count()
+
+func reset_gamestate():
+	game_level = 1
+	game_score = 0
 
 func calculate_score(parasites_cleared : int) -> int:
 	if parasites_cleared < 0: parasites_cleared = 0
