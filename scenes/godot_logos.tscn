@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://c0ymh8plcjps3"]
 
 [ext_resource type="Script" path="res://scenes/godot_logos.gd" id="1_kpls8"]
-[ext_resource type="Texture2D" uid="uid://bmshavqm8va6y" path="res://art/project/splatter.png" id="1_rey7j"]
-[ext_resource type="PackedScene" uid="uid://bhp0e1uohy22a" path="res://scenes/menu/main_menu.tscn" id="2_avkak"]
+[ext_resource type="Texture2D" uid="uid://ckrifsygaukva" path="res://art/project/splatter.png" id="1_rey7j"]
+[ext_resource type="PackedScene" uid="uid://bhp0e1uohy22a" path="res://scenes/Menu/main_menu.tscn" id="2_avkak"]
 
 [sub_resource type="Animation" id="Animation_s5nhb"]
 length = 0.001

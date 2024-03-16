@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://rnn6lcc1q21p"]
 
 [ext_resource type="Script" path="res://scenes/Menu/options.gd" id="1_re738"]
-[ext_resource type="PackedScene" uid="uid://dlslnkxtqt8hc" path="res://scenes/menu/audiocontrol.tscn" id="3_ovf61"]
+[ext_resource type="PackedScene" uid="uid://dlslnkxtqt8hc" path="res://scenes/Menu/audiocontrol.tscn" id="3_ovf61"]
 
 [node name="Options" type="Node2D"]
 script = ExtResource("1_re738")

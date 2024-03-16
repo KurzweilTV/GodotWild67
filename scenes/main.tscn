@@ -1,12 +1,12 @@
 [gd_scene load_steps=12 format=3 uid="uid://bc18i1ujy7g3q"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_a1t5j"]
-[ext_resource type="Texture2D" uid="uid://dlthatv70ns4h" path="res://art/background/SolidBG.png" id="1_kr8x1"]
-[ext_resource type="Texture2D" uid="uid://dn254n5m17n4g" path="res://art/doctor/game_sprite.png" id="3_d3m4l"]
-[ext_resource type="Texture2D" uid="uid://pei305jjv7uc" path="res://art/ui/Dr.Parasite Clip Board Medium.png" id="3_h7u8f"]
-[ext_resource type="FontFile" uid="uid://cjib3ojdn6nke" path="res://fonts/nokia.ttf" id="4_wxvck"]
-[ext_resource type="Texture2D" uid="uid://bvaqq0hqg76fk" path="res://art/ui/Dr.Parasite Clip Board Small.png" id="5_ajw8b"]
-[ext_resource type="AudioStream" uid="uid://cf8yphku4yol7" path="res://sounds/music/game_music.ogg" id="5_ptbe0"]
+[ext_resource type="Texture2D" uid="uid://brpt6b2xj031g" path="res://art/background/SolidBG.png" id="1_kr8x1"]
+[ext_resource type="Texture2D" uid="uid://cxpx83vq0yyls" path="res://art/doctor/game_sprite.png" id="3_d3m4l"]
+[ext_resource type="Texture2D" uid="uid://caa1w1ojp0ad5" path="res://art/ui/Dr.Parasite Clip Board Medium.png" id="3_h7u8f"]
+[ext_resource type="FontFile" uid="uid://dubv7nt74lhod" path="res://fonts/nokia.ttf" id="4_wxvck"]
+[ext_resource type="Texture2D" uid="uid://ppstnq5g8vyp" path="res://art/ui/Dr.Parasite Clip Board Small.png" id="5_ajw8b"]
+[ext_resource type="AudioStream" uid="uid://dpyvjnt5jx1na" path="res://sounds/music/game_music.ogg" id="5_ptbe0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y5djk"]
 atlas = ExtResource("3_d3m4l")
