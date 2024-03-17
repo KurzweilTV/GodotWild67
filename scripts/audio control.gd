@@ -31,9 +31,6 @@ func _on_button_pressed():
 	$Back.play()
 	get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
 
-
-
-
 func _on_check_button_toggled(toggled_on: bool) -> void:
 	GameManager.silly_mode = toggled_on
 
@@ -41,3 +38,5 @@ func _on_check_button_toggled(toggled_on: bool) -> void:
 		MusicPlayer.silly_machine.play("oscilate")
 	else:
 		MusicPlayer.silly_machine.stop()
+		MusicPlayer.game_music.pitch_scale = 1
+		MusicPlayer.menu_music.pitch_scale = 1

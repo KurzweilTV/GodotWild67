@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://5qcawbfuda24" path="res://art/background/NewGameBoard.png" id="2_x78yu"]
 [ext_resource type="AudioStream" uid="uid://clndy6ul3otsa" path="res://sounds/effects/destroyed.mp3" id="4_qb7vh"]
 [ext_resource type="AudioStream" uid="uid://byc1eu11sfnk1" path="res://sounds/effects/falling.mp3" id="4_whhg2"]
-[ext_resource type="AudioStream" uid="uid://tefrmo5gk4qt" path="res://sounds/effects/game_over.mp3" id="5_cqsue"]
+[ext_resource type="AudioStream" uid="uid://cy7i4ixjhm71e" path="res://sounds/music/gameover_withmusic.mp3" id="5_8hsaw"]
 [ext_resource type="FontFile" uid="uid://cjib3ojdn6nke" path="res://fonts/nokia.ttf" id="5_cykwa"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_d76ag"]
@@ -33,7 +33,7 @@ stream = ExtResource("4_whhg2")
 
 [node name="gameover_sound" type="AudioStreamPlayer2D" parent="Sounds"]
 process_mode = 3
-stream = ExtResource("5_cqsue")
+stream = ExtResource("5_8hsaw")
 bus = &"SFX"
 
 [node name="DebugLabel" type="Label" parent="."]

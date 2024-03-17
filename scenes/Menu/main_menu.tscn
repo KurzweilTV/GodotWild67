@@ -10,7 +10,6 @@ texture_filter = 1
 script = ExtResource("1_epguv")
 
 [node name="ColorRect" type="TextureRect" parent="."]
-modulate = Color(0.635294, 0.635294, 0.635294, 1)
 anchors_preset = -1
 anchor_right = 0.489
 offset_right = 640.0
