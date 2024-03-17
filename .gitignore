@@ -4,5 +4,8 @@
 .godot/
 android/
 exports/
+scripts/highscore_viewer.gd
+scripts/submit_score.gd
 
-*.DS*
+.DS_Store
+*/.DS_Store

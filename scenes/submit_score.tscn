@@ -1,0 +1,90 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2g3f58sys4fl"]
+
+[ext_resource type="Script" path="res://scripts/submit_score.gd" id="1_ogjes"]
+[ext_resource type="Texture2D" uid="uid://pei305jjv7uc" path="res://art/ui/Dr.Parasite Clip Board Medium.png" id="2_f10d2"]
+[ext_resource type="FontFile" uid="uid://cjib3ojdn6nke" path="res://fonts/nokia.ttf" id="3_sul6o"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gtnoh"]
+font = ExtResource("3_sul6o")
+font_color = Color(0, 0, 0, 1)
+outline_size = 7
+
+[node name="SubmitScore" type="Node2D"]
+process_mode = 3
+texture_filter = 1
+position = Vector2(80, 0)
+script = ExtResource("1_ogjes")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_f10d2")
+
+[node name="LevelText" type="Label" parent="."]
+texture_filter = 1
+offset_left = -62.0
+offset_top = -53.0
+offset_right = 64.0
+offset_bottom = -30.0
+text = "Submit Score"
+label_settings = SubResource("LabelSettings_gtnoh")
+
+[node name="SubmitButton" type="Button" parent="."]
+process_mode = 3
+offset_left = -48.0
+offset_top = 32.0
+offset_right = 49.0
+offset_bottom = 58.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.627451, 0.776471, 0.321569, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_sul6o")
+theme_override_font_sizes/font_size = 14
+text = "Submit"
+flat = true
+
+[node name="View Leaderboard" type="Button" parent="."]
+process_mode = 3
+offset_left = -83.0
+offset_top = 64.0
+offset_right = 83.0
+offset_bottom = 90.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.627451, 0.776471, 0.321569, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_sul6o")
+theme_override_font_sizes/font_size = 14
+text = "View Scores"
+flat = true
+
+[node name="MenuButton" type="Button" parent="."]
+process_mode = 3
+visible = false
+offset_left = -48.0
+offset_top = 66.0
+offset_right = 49.0
+offset_bottom = 92.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.627451, 0.776471, 0.321569, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_sul6o")
+theme_override_font_sizes/font_size = 14
+text = "Menu"
+flat = true
+
+[node name="LineEdit" type="LineEdit" parent="."]
+offset_left = -69.0
+offset_top = 1.0
+offset_right = 67.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_sul6o")
+placeholder_text = "Enter Name"
+alignment = 1
+max_length = 12
+
+[connection signal="pressed" from="SubmitButton" to="." method="_on_submit_button_pressed"]
+[connection signal="pressed" from="View Leaderboard" to="." method="_on_view_leaderboard_pressed"]
+[connection signal="pressed" from="MenuButton" to="." method="_on_menu_pressed"]
+[connection signal="text_submitted" from="LineEdit" to="." method="_on_line_edit_text_submitted"]

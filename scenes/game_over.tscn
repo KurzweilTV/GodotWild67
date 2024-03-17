@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnnl8b75ls4g5"]
+[gd_scene load_steps=6 format=3 uid="uid://bnnl8b75ls4g5"]
 
 [ext_resource type="Script" path="res://scripts/game_over.gd" id="1_8nshg"]
 [ext_resource type="Texture2D" uid="uid://pei305jjv7uc" path="res://art/ui/Dr.Parasite Clip Board Medium.png" id="1_tps1i"]
 [ext_resource type="FontFile" uid="uid://cjib3ojdn6nke" path="res://fonts/nokia.ttf" id="2_wt738"]
+[ext_resource type="PackedScene" uid="uid://c2g3f58sys4fl" path="res://scenes/submit_score.tscn" id="4_871lo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gtnoh"]
 font = ExtResource("2_wt738")
@@ -22,43 +23,44 @@ offset_bottom = 240.0
 color = Color(0.196078, 0.196078, 0.196078, 0.729412)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-79, -1)
 texture = ExtResource("1_tps1i")
 
 [node name="LevelText" type="Label" parent="."]
 texture_filter = 1
-offset_left = -49.0
-offset_top = -42.0
-offset_right = 53.0
-offset_bottom = -19.0
+offset_left = -128.0
+offset_top = -43.0
+offset_right = -26.0
+offset_bottom = -20.0
 text = "GameOver"
 label_settings = SubResource("LabelSettings_gtnoh")
 
 [node name="ScoreText" type="Label" parent="."]
 texture_filter = 1
-offset_left = -58.0
-offset_top = 40.0
-offset_right = 34.0
-offset_bottom = 63.0
+offset_left = -137.0
+offset_top = 39.0
+offset_right = -45.0
+offset_bottom = 62.0
 text = "Score"
 label_settings = SubResource("LabelSettings_gtnoh")
 
 [node name="Score" type="Label" parent="."]
 process_mode = 3
 texture_filter = 1
-offset_left = 7.0
-offset_top = 63.0
-offset_right = 61.0
-offset_bottom = 86.0
+offset_left = -72.0
+offset_top = 62.0
+offset_right = -18.0
+offset_bottom = 85.0
 text = "0"
 label_settings = SubResource("LabelSettings_gtnoh")
 horizontal_alignment = 2
 
 [node name="Button" type="Button" parent="."]
 process_mode = 3
-offset_left = -47.0
-offset_top = -7.0
-offset_right = 50.0
-offset_bottom = 19.0
+offset_left = -126.0
+offset_top = -8.0
+offset_right = -29.0
+offset_bottom = 18.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0.627451, 0.776471, 0.321569, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -67,5 +69,7 @@ theme_override_fonts/font = ExtResource("2_wt738")
 theme_override_font_sizes/font_size = 14
 text = "Menu"
 flat = true
+
+[node name="SubmitScore" parent="." instance=ExtResource("4_871lo")]
 
 [connection signal="pressed" from="Button" to="." method="_on_menu_pressed"]

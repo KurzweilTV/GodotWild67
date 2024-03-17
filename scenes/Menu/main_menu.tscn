@@ -1,17 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://bhp0e1uohy22a"]
+[gd_scene load_steps=5 format=3 uid="uid://bhp0e1uohy22a"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_epguv"]
+[ext_resource type="Texture2D" uid="uid://cnrqv72no4ruq" path="res://art/project/menu_bg.png" id="2_5ae4i"]
 [ext_resource type="PackedScene" uid="uid://b2km4da3qmsw8" path="res://scenes/menu/start_menu.tscn" id="2_a0qaj"]
+[ext_resource type="Texture2D" uid="uid://b63ogrn2ngs30" path="res://art/project/title.png" id="4_f2ytt"]
 
 [node name="Main Menu" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_epguv")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="TextureRect" parent="."]
+modulate = Color(0.635294, 0.635294, 0.635294, 1)
 anchors_preset = -1
 anchor_right = 0.489
 offset_right = 640.0
 offset_bottom = 484.0
-color = Color(0, 0.45098, 0.454902, 1)
+texture = ExtResource("2_5ae4i")
 
 [node name="Control" parent="." instance=ExtResource("2_a0qaj")]
 anchors_preset = 7
@@ -23,3 +27,7 @@ offset_top = 256.0
 offset_right = 320.0
 offset_bottom = 256.0
 grow_vertical = 0
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(320, 128)
+texture = ExtResource("4_f2ytt")

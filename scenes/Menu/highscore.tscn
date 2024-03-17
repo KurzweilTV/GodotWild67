@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://670678qkv7lo"]
+
+[ext_resource type="Script" path="res://scripts/highscore_viewer.gd" id="1_wow7n"]
+[ext_resource type="Texture2D" uid="uid://dan7r17fwavi5" path="res://art/ui/Dr.Parasite Clip Board Large.png" id="2_pdrd4"]
+[ext_resource type="FontFile" uid="uid://cjib3ojdn6nke" path="res://fonts/nokia.ttf" id="3_q6nvg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ibuv6"]
+font = ExtResource("3_q6nvg")
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+outline_size = 7
+
+[node name="HighScoreScreen" type="Control"]
+z_index = 10
+z_as_relative = false
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_wow7n")
+
+[node name="Clipboard" type="Sprite2D" parent="."]
+position = Vector2(-3, 10)
+scale = Vector2(1.3413, 1.42369)
+texture = ExtResource("2_pdrd4")
+
+[node name="ScoresLabel" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = -180.0
+offset_top = -142.0
+offset_right = 173.0
+offset_bottom = 135.0
+text = "Loading Leaderboard..."
+label_settings = SubResource("LabelSettings_ibuv6")
+
+[node name="Button" type="Button" parent="."]
+process_mode = 3
+layout_mode = 0
+offset_left = -48.0
+offset_top = 163.0
+offset_right = 49.0
+offset_bottom = 189.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.627451, 0.776471, 0.321569, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_q6nvg")
+theme_override_font_sizes/font_size = 14
+text = "Back"
+flat = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

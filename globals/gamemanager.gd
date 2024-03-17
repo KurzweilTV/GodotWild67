@@ -4,9 +4,10 @@ func _ready() -> void:
 	randomize()
 
 var game_level : int = 1
-var game_score : int = 0
+var game_score : int = 400
 var game_speed : String
 var game_parasites : int
+var silly_mode : bool = false
 
 var next_1 : Dictionary
 var next_2 : Dictionary
